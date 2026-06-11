@@ -74,102 +74,64 @@ function initAccessibilityEnhancements() {
   }
 }
 
-/* ====================================================
-   GLOBAL EVENT DELEGATION
-   Replaces all inline onclick= handlers with JS-bound events.
+/* ====================================================   GLOBAL EVENT DELEGATION
+   Single delegated click handler routes to handlers via a selector-based map.
    ==================================================== */
+
+/**
+ * Dispatch table: CSS selector → handler function.
+ * Handler receives (element, event). Order matters — first match wins.
+ */
+const CLICK_HANDLERS = [
+  // Onboarding navigation
+  { sel: ".ob-back-btn",          fn: (el, e) => { e.preventDefault(); if (typeof prevStep === "function") prevStep(); } },
+  { sel: ".ob-skip",              fn: (el, e) => { e.preventDefault(); window.location.href = "dashboard.html"; } },
+  { sel: ".ob-step-panel .btn-primary:not(#step-7 .btn-primary)", fn: (el, e) => { e.preventDefault(); if (typeof nextStep === "function") nextStep(); } },
+
+  // Onboarding option selection
+  { sel: "#step-2 .ob-option-card", fn: (el) => { if (typeof toggleOption === "function") toggleOption(el); } },
+  { sel: "#step-3 .ob-option-card, #step-6 .ob-option-card", fn: (el) => { handleSingleSelect(el); } },
+  { sel: "#step-4 .ob-option-row, #step-5 .ob-option-row", fn: (el) => { handleSingleSelect(el); } },
+  { sel: ".ob-goal-card",         fn: (el) => { if (typeof toggleGoal === "function") toggleGoal(el); } },
+  { sel: "#step-5 .chip",         fn: (el) => { if (typeof toggleChip === "function") toggleChip(el); } },
+
+  // Dashboard
+  { sel: ".toggle-option",        fn: (el) => { handlePeriodToggle(el); } },
+  { sel: ".rec-item",             fn: () => { window.location.href = "actions.html"; } },
+
+  // Insights
+  { sel: ".insight-card-action",  fn: (el, e) => { const href = el.getAttribute("data-href"); if (href) { e.preventDefault(); window.location.href = href; } } },
+];
+
+/** Helper: select a card/row and store its value on the parent group. */
+function handleSingleSelect(el) {
+  if (typeof selectSingle !== "function") return;
+  const group = el.closest(".ob-options-grid") || el.closest(".ob-options-list");
+  selectSingle(el);
+  if (group) {
+    group.setAttribute("data-selected-value", el.querySelector("strong")?.textContent?.trim() || el.textContent.trim().split("\n")[0]);
+  }
+}
+
+/** Helper: period toggle — deactivate siblings, activate clicked, notify. */
+function handlePeriodToggle(el) {
+  const group = el.closest(".toggle-group");
+  if (!group) return;
+  group.querySelectorAll(".toggle-option").forEach(s => {
+    s.classList.remove("active");
+    s.setAttribute("aria-selected", "false");
+  });
+  el.classList.add("active");
+  el.setAttribute("aria-selected", "true");
+  if (typeof window.switchPeriod === "function") window.switchPeriod(el);
+}
+
 function initGlobalEvents() {
-  // Onboarding: navigation buttons
+  // Single delegated click handler — routes via dispatch table
   document.addEventListener("click", (e) => {
-    const target = e.target;
-    if (target.classList.contains("ob-back-btn")) {
-      e.preventDefault();
-      if (typeof prevStep === "function") prevStep();
-    }
-    if (target.classList.contains("btn-primary") && target.closest(".ob-step-panel") && !target.closest("#step-7")) {
-      e.preventDefault();
-      if (typeof nextStep === "function") nextStep();
-    }
-    if (target.classList.contains("ob-skip")) {
-      e.preventDefault();
-      window.location.href = "dashboard.html";
-    }
-  });
-
-  // Onboarding: option cards (multi-select commute)
-  document.addEventListener("click", (e) => {
-    const card = e.target.closest("#step-2 .ob-option-card");
-    if (card && typeof toggleOption === "function") toggleOption(card);
-  });
-
-  // Onboarding: single-select cards (cooking, AC, flight type)
-  document.addEventListener("click", (e) => {
-    const card = e.target.closest("#step-3 .ob-option-card, #step-6 .ob-option-card");
-    if (card && typeof selectSingle === "function") {
-      const group = card.closest(".ob-options-grid");
-      const groupName = card.closest("#step-3") ? "cooking" : "flighttype";
-      selectSingle(card, groupName);
-      if (group) {
-        group.setAttribute("data-selected-value", card.querySelector("strong")?.textContent?.trim() || card.textContent.trim().split("\n")[0]);
-      }
-    }
-  });
-
-  // Onboarding: single-select rows (diet, shopping)
-  document.addEventListener("click", (e) => {
-    const row = e.target.closest("#step-4 .ob-option-row, #step-5 .ob-option-row");
-    if (row && typeof selectSingle === "function") {
-      const group = row.closest(".ob-options-list") || row.closest(".ob-options-grid");
-      selectSingle(row, "diet");
-      if (group) {
-        group.setAttribute("data-selected-value", row.querySelector("strong")?.textContent?.trim() || row.textContent.trim().split("\n")[0]);
-      }
-    }
-  });
-
-  // Onboarding: goal cards (multi-select)
-  document.addEventListener("click", (e) => {
-    const goal = e.target.closest(".ob-goal-card");
-    if (goal && typeof toggleGoal === "function") toggleGoal(goal);
-  });
-
-  // Onboarding: chips (multi-select)
-  document.addEventListener("click", (e) => {
-    const chip = e.target.closest("#step-5 .chip");
-    if (chip && typeof toggleChip === "function") toggleChip(chip);
-  });
-
-  // Dashboard: period toggle
-  document.addEventListener("click", (e) => {
-    const toggle = e.target.closest(".toggle-option");
-    if (toggle && toggle.closest(".toggle-group")) {
-      const group = toggle.closest(".toggle-group");
-      const isWeek = toggle.textContent.trim() === "Week";
-      group.querySelectorAll(".toggle-option").forEach(s => {
-        s.classList.remove("active");
-        s.setAttribute("aria-selected", "false");
-      });
-      toggle.classList.add("active");
-      toggle.setAttribute("aria-selected", "true");
-      if (typeof window.switchPeriod === "function") window.switchPeriod(toggle);
-    }
-  });
-
-  // Dashboard: recommendation items
-  document.addEventListener("click", (e) => {
-    const rec = e.target.closest(".rec-item");
-    if (rec) window.location.href = "actions.html";
-  });
-
-  // Insights: action buttons (support both data-href and onclick patterns)
-  document.addEventListener("click", (e) => {
-    const action = e.target.closest(".insight-card-action");
-    if (action) {
-      const href = action.getAttribute("data-href");
-      if (href) {
-        e.preventDefault();
-        window.location.href = href;
-      }
+    for (const { sel, fn } of CLICK_HANDLERS) {
+      const el = e.target.closest(sel);
+      if (el) { fn(el, e); return; }
     }
   });
 

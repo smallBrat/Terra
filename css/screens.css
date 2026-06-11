@@ -926,6 +926,35 @@
   letter-spacing: -0.02em;
 }
 
+/* Checkin confirmation card */
+.ci-confirmation-card {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  background: var(--bg-raised);
+  border: 1.5px solid var(--sage-200);
+  border-radius: var(--radius-xl);
+}
+
+.ci-confirmation-icon {
+  font-size: 3.5rem;
+  margin-bottom: var(--space-4);
+}
+
+.ci-confirmation-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.ci-confirmation-msg {
+  color: var(--text-secondary);
+  max-width: 320px;
+  margin: 0 auto var(--space-6);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
 /* ====================================================
    INSIGHTS SCREEN
    ==================================================== */

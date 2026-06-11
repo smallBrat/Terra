@@ -1220,6 +1220,9 @@ p {
 .overflow-hidden { overflow: hidden; }
 .relative { position: relative; }
 
+/* --- VISIBILITY --- */
+.is-hidden { display: none !important; }
+
 /* --- SCROLL TO TOP ANIMATIONS --- */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }

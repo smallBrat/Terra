@@ -18,7 +18,8 @@ const CSS_FILES = [
   "css/landing.css", "css/onboarding.css"
 ];
 const JS_FILES = [
-  "js/constants.js", "js/app.js", "js/main.js", "js/charts.js", "js/onboarding.js"
+  "js/constants.js", "js/app.js", "js/ui.js", "js/main.js",
+  "js/charts.js", "js/onboarding.js", "js/profile.js"
 ];
 
 let passed = 0;
