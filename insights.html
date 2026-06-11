@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Insights & Feedback — Terra</title>
+  <meta name="description" content="View personalized climate feedback on Terra. Find trends, positive shifts, and major opportunities to save carbon footprint.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="breakdown.html" class="nav-link">Breakdown</a>
+        <a href="actions.html" class="nav-link">Actions</a>
+        <a href="insights.html" class="nav-link active">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm nav-avatar" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link active">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Good evening, Arjun 👋</h1>
+          <p class="page-subtitle">Monday, 9 June 2025 · Week 23 of the year</p>
+        </div>
+        <div class="page-header-actions">
+          <a href="checkin.html" class="btn btn-primary btn-sm">+ Log today</a>
+        </div>
+      </div>
+
+      <!-- INSIGHTS GRID -->
+      <div class="insights-layout">
+
+        <!-- LEFT AREA: FEED -->
+        <div>
+          
+          <!-- PERIOD TABS -->
+          <div class="insights-period-tabs">
+            <div class="toggle-group bg-raised d-inline-flex">
+              <button class="toggle-option active">Weekly feed</button>
+              <button class="toggle-option">Monthly summary</button>
+            </div>
+          </div>
+
+          <!-- FEED CONTAINER -->
+          <div class="insights-feed">
+
+            <!-- INSIGHT 1: POSITIVE -->
+            <div class="insight-card positive">
+              <div class="insight-card-icon">🎉</div>
+              <div class="insight-card-body">
+                <h3 class="insight-card-heading">Diet shifts are showing positive results</h3>
+                <p class="insight-card-text">
+                  You logged 8 meat-free meals this week, compared to an average of 5 meals in your profile baseline. This adjustment prevented roughly 2.4 kg CO₂e of emissions — equivalent to saving a solo commute run!
+                </p>
+                <div class="insight-card-meta">
+                  <span class="insight-meta-tag bg-sage-100 text-sage-700">Achievement</span>
+                  <span class="insight-category-tag">🍽️ Food</span>
+                  <button class="insight-card-action">View food goals →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- INSIGHT 2: WARNING -->
+            <div class="insight-card warning">
+              <div class="insight-card-icon">⚠️</div>
+              <div class="insight-card-body">
+                <h3 class="insight-card-heading">AC cooling demand remains a key factor</h3>
+                <p class="insight-card-text">
+                  With local temperatures rising, your cooling footprint increased by 15% this week. Setting your AC thermostat to 24°C instead of 20°C could trim your bill and save an estimated 1.8 kg CO₂e each week.
+                </p>
+                <div class="insight-card-meta">
+                  <span class="insight-meta-tag bg-amber-100 text-amber-700">Opportunity</span>
+                  <span class="insight-category-tag">🏠 Home energy</span>
+                  <button class="insight-card-action">Opt in AC action →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- INSIGHT 3: NEUTRAL -->
+            <div class="insight-card neutral">
+              <div class="insight-card-icon">📊</div>
+              <div class="insight-card-body">
+                <h3 class="insight-card-heading">Weekly comparison versus local profile</h3>
+                <p class="insight-card-text">
+                  Your current weekly average footprint is 34.2 kg. This places you in the top 20% of climate-conscious users in Mumbai. Most of your savings come from high utilization of local transit services.
+                </p>
+                <div class="insight-card-meta">
+                  <span class="insight-meta-tag bg-mineral-100 text-secondary">Information</span>
+                  <span class="insight-category-tag">🌎 Benchmarks</span>
+                  <button class="insight-card-action">See breakdown →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- INSIGHT 4: POSITIVE -->
+            <div class="insight-card positive">
+              <div class="insight-card-icon">📦</div>
+              <div class="insight-card-body">
+                <h3 class="insight-card-heading">Delivery batching milestone achieved</h3>
+                <p class="insight-card-text">
+                  By consolidating your online shopping dispatch runs into a single delivery day, you prevented 3 individual dispatch trips. Packaging waste and delivery miles dropped significantly.
+                </p>
+                <div class="insight-card-meta">
+                  <span class="insight-meta-tag bg-sage-100 text-sage-700">Achievement</span>
+                  <span class="insight-category-tag">📦 Shopping</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT AREA: SIDEBAR STATS -->
+        <div class="insights-sidebar">
+          
+          <!-- MINI TREND -->
+          <div class="mini-trend-card">
+            <div class="mtc-title">Aggregated Savings</div>
+            <div class="mtc-big-num">−12.3 kg</div>
+            <div class="mtc-label">Net carbon saved over 8 weeks</div>
+            
+            <div class="mtc-spark">
+              <div class="spark-bar" style="--bar-pct: 30"></div>
+              <div class="spark-bar" style="--bar-pct: 40"></div>
+              <div class="spark-bar" style="--bar-pct: 45"></div>
+              <div class="spark-bar" style="--bar-pct: 60"></div>
+              <div class="spark-bar" style="--bar-pct: 70"></div>
+              <div class="spark-bar" style="--bar-pct: 65"></div>
+              <div class="spark-bar" style="--bar-pct: 80"></div>
+              <div class="spark-bar current" style="--bar-pct: 90"></div>
+            </div>
+          </div>
+
+          <!-- HABITS CALENDAR PATTERNS -->
+          <div class="patterns-card">
+            <div class="mtc-title mb-3">Log Compliance</div>
+            
+            <div class="pattern-row">
+              <span class="pattern-day">Monday</span>
+              <div class="pattern-score">
+                <span class="ps-dot good"></span>
+                <span class="ps-dot good"></span>
+                <span class="ps-dot ok"></span>
+              </div>
+            </div>
+            <div class="pattern-row">
+              <span class="pattern-day">Tuesday</span>
+              <div class="pattern-score">
+                <span class="ps-dot good"></span>
+                <span class="ps-dot ok"></span>
+                <span class="ps-dot"></span>
+              </div>
+            </div>
+            <div class="pattern-row">
+              <span class="pattern-day">Wednesday</span>
+              <div class="pattern-score">
+                <span class="ps-dot good"></span>
+                <span class="ps-dot good"></span>
+                <span class="ps-dot good"></span>
+              </div>
+            </div>
+            <div class="pattern-row">
+              <span class="pattern-day">Thursday</span>
+              <div class="pattern-score">
+                <span class="ps-dot good"></span>
+                <span class="ps-dot"></span>
+                <span class="ps-dot"></span>
+              </div>
+            </div>
+            <div class="pattern-row">
+              <span class="pattern-day">Friday</span>
+              <div class="pattern-score">
+                <span class="ps-dot good"></span>
+                <span class="ps-dot good"></span>
+                <span class="ps-dot"></span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

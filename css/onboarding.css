@@ -1,0 +1,519 @@
+/* =====================================================
+   TERRA — ONBOARDING STYLES
+   ===================================================== */
+
+.page-onboarding {
+  background: var(--bg-base);
+  min-height: 100vh;
+}
+
+/* --- ONBOARDING HEADER --- */
+.onboarding-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-8);
+  border-bottom: 1px solid var(--mineral-200);
+  background: var(--bg-surface);
+}
+
+.ob-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.ob-skip {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.ob-skip:hover {
+  color: var(--text-secondary);
+}
+
+/* --- PROGRESS INDICATOR --- */
+.ob-progress-bar {
+  height: 3px;
+  background: var(--mineral-200);
+  position: relative;
+}
+
+.ob-progress-fill {
+  height: 100%;
+  width: calc(var(--progress-pct, 0) * 1%);
+  background: var(--sage-500);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ob-options-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* --- MAIN ONBOARDING LAYOUT --- */
+.onboarding-wrapper {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  min-height: calc(100vh - 68px - 3px);
+}
+
+/* Left panel — context sidebar */
+.ob-sidebar {
+  background: var(--mineral-900);
+  padding: var(--space-12) var(--space-8);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 68px - 3px);
+}
+
+.ob-sidebar-step {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-10);
+}
+
+.ob-step-tag {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage-300);
+}
+
+.ob-step-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--mineral-50);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.ob-step-desc {
+  font-size: 0.9375rem;
+  color: var(--mineral-400);
+  line-height: 1.65;
+}
+
+/* Step progress dots */
+.ob-steps-list {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ob-step-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.875rem;
+}
+
+.ob-step-item .ob-dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 1.5px solid var(--mineral-600);
+  color: var(--mineral-500);
+  transition: all var(--transition-base);
+}
+
+.ob-step-item.done .ob-dot {
+  background: var(--sage-500);
+  border-color: var(--sage-500);
+  color: #fff;
+}
+
+.ob-step-item.active .ob-dot {
+  border-color: var(--sage-400);
+  color: var(--sage-300);
+  background: rgba(107, 153, 101, 0.12);
+}
+
+.ob-step-item .ob-step-name {
+  color: var(--mineral-500);
+}
+
+.ob-step-item.done .ob-step-name  { color: var(--mineral-400); }
+.ob-step-item.active .ob-step-name { color: var(--mineral-200); font-weight: 500; }
+
+/* --- ONBOARDING CONTENT AREA --- */
+.ob-content {
+  padding: var(--space-12) var(--space-10) var(--space-8);
+  overflow-y: auto;
+}
+
+.ob-step-panel {
+  max-width: 560px;
+  display: none;
+  animation: fadeUp 0.4s ease both;
+}
+
+.ob-step-panel.active {
+  display: block;
+}
+
+.ob-panel-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage-600);
+  margin-bottom: var(--space-2);
+}
+
+.ob-panel-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+}
+
+.ob-panel-sub {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+  line-height: 1.65;
+}
+
+/* --- OPTION CARDS (select one) --- */
+.ob-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.ob-option-card {
+  padding: var(--space-4) var(--space-5);
+  border: 1.5px solid var(--mineral-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--bg-raised);
+}
+
+.ob-option-card:hover {
+  border-color: var(--sage-300);
+  background: var(--sage-100);
+}
+
+.ob-option-card.selected {
+  border-color: var(--sage-500);
+  background: var(--sage-100);
+  box-shadow: 0 0 0 3px rgba(107, 153, 101, 0.12);
+}
+
+.ob-option-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ob-option-icon.ob-option-icon-sm {
+  font-size: 1.25rem;
+}
+
+.ob-option-text strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ob-option-text span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* Single column options */
+.ob-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.ob-option-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1.5px solid var(--mineral-200);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--bg-raised);
+}
+
+.ob-option-row:hover {
+  border-color: var(--sage-300);
+  background: var(--sage-100);
+}
+
+.ob-option-row.selected {
+  border-color: var(--sage-500);
+  background: var(--sage-100);
+}
+
+.ob-option-row .ob-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--mineral-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  transition: all var(--transition-fast);
+}
+
+.ob-option-row.selected .ob-check {
+  background: var(--sage-500);
+  border-color: var(--sage-500);
+}
+
+.ob-option-row.selected .ob-check::after {
+  content: '✓';
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+/* --- CHIP SELECTION --- */
+.ob-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+/* --- SLIDER --- */
+.ob-slider-group {
+  margin-bottom: var(--space-8);
+}
+
+.ob-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.ob-slider-labels span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.ob-slider {
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-full);
+  -webkit-appearance: none;
+  background: var(--mineral-200);
+  outline: none;
+  cursor: pointer;
+}
+
+.ob-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--sage-600);
+  border: 2px solid var(--bg-raised);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.ob-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.ob-slider-value {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.ob-slider-unit {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: var(--space-1);
+}
+
+/* --- FORM FIELDS IN ONBOARDING --- */
+.ob-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.ob-form-full {
+  grid-column: 1 / -1;
+}
+
+/* --- NAVIGATION BUTTONS --- */
+.ob-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--mineral-200);
+}
+
+.ob-back-btn {
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-3) 0;
+  transition: color var(--transition-fast);
+}
+
+.ob-back-btn:hover {
+  color: var(--text-secondary);
+}
+
+/* --- GOAL SELECTION --- */
+.ob-goals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.ob-goal-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 1.5px solid var(--mineral-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: var(--bg-raised);
+}
+
+.ob-goal-card:hover {
+  border-color: var(--sage-300);
+}
+
+.ob-goal-card.selected {
+  border-color: var(--sage-500);
+  background: var(--sage-100);
+}
+
+.ob-goal-icon-wrap {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--mineral-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.ob-goal-card.selected .ob-goal-icon-wrap {
+  background: var(--sage-200);
+}
+
+.ob-goal-text {
+  flex: 1;
+}
+
+.ob-goal-text strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.ob-goal-text span {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.ob-goal-select {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--mineral-300);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.ob-goal-card.selected .ob-goal-select {
+  background: var(--sage-500);
+  border-color: var(--sage-500);
+}
+
+.ob-goal-card.selected .ob-goal-select::after {
+  content: '✓';
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .onboarding-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .ob-sidebar {
+    display: none;
+  }
+
+  .ob-content {
+    padding: var(--space-8) var(--space-5);
+  }
+}
+
+@media (max-width: 600px) {
+  .ob-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ob-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .onboarding-header {
+    padding: var(--space-4) var(--space-4);
+  }
+}

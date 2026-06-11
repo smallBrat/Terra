@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Profile & Goals — Terra</title>
+  <meta name="description" content="Manage your personal carbon goals, household parameters, and lifestyle profile on Terra.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="breakdown.html" class="nav-link">Breakdown</a>
+        <a href="actions.html" class="nav-link">Actions</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm active nav-avatar" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link active">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <div class="profile-layout">
+
+        <!-- LEFT COLUMN: IDENTITY -->
+        <div>
+          <div class="profile-identity-card">
+            <div class="profile-avatar">🌿</div>
+            <h2 class="profile-name">Arjun</h2>
+            <div class="profile-since">Member since June 2025</div>
+            
+            <div class="profile-stats">
+              <div class="profile-stat">
+                <div class="profile-stat-val">11</div>
+                <div class="profile-stat-label">Check-in streak</div>
+              </div>
+              <div class="profile-stat">
+                <div class="profile-stat-val">−12.3 kg</div>
+                <div class="profile-stat-label">Total carbon saved</div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-secondary btn-sm w-100 justify-center mb-4">
+            Reset Assessment Data
+          </button>
+        </div>
+
+        <!-- RIGHT COLUMN: SECTIONS -->
+        <div class="profile-main">
+
+          <!-- PROFILE PARAMETERS -->
+          <div class="profile-section-card">
+            <div class="psc-header">
+              <span class="psc-title">Lifestyle Parameters</span>
+              <button class="psc-edit-btn">Edit in Onboarding</button>
+            </div>
+            <div class="psc-body">
+              <div class="data-row">
+                <span class="data-row-label">Primary location</span>
+                <span class="data-row-value">Mumbai, Maharashtra</span>
+              </div>
+              <div class="data-row">
+                <span class="data-row-label">Household size</span>
+                <span class="data-row-value">3–4 people</span>
+              </div>
+              <div class="data-row">
+                <span class="data-row-label">Daily commute mode</span>
+                <span class="data-row-value">Public transit, Solo cab rides</span>
+              </div>
+              <div class="data-row">
+                <span class="data-row-label">Electric grid utility bill</span>
+                <span class="data-row-value">₹1,000 – ₹2,500 / month</span>
+              </div>
+              <div class="data-row">
+                <span class="data-row-label">Diet style</span>
+                <span class="data-row-value">Flexitarian</span>
+              </div>
+              <div class="data-row">
+                <span class="data-row-label">Long distance flights</span>
+                <span class="data-row-value">2 round trips / year</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GOALS PROGRESS -->
+          <div class="profile-section-card">
+            <div class="psc-header">
+              <span class="psc-title">Active Target Progress</span>
+              <button class="psc-edit-btn">Manage Actions</button>
+            </div>
+            <div class="psc-body">
+              <div class="goals-list">
+                
+                <div class="goal-row">
+                  <div class="goal-icon">🚗</div>
+                  <div class="goal-info">
+                    <div class="goal-name">Reduce commute emissions</div>
+                    <div class="goal-progress-wrap">
+                      <div class="goal-progress-track"><div class="goal-progress-fill" style="--bar-pct: 60"></div></div>
+                      <span class="goal-pct">60%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="goal-row">
+                  <div class="goal-icon">🏠</div>
+                  <div class="goal-info">
+                    <div class="goal-name">Cut home cooling power demand</div>
+                    <div class="goal-progress-wrap">
+                      <div class="goal-progress-track"><div class="goal-progress-fill" style="--bar-pct: 40"></div></div>
+                      <span class="goal-pct">40%</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="goal-row">
+                  <div class="goal-icon">🍽️</div>
+                  <div class="goal-info">
+                    <div class="goal-name">Incorporate sustainable meat-free choices</div>
+                    <div class="goal-progress-wrap">
+                      <div class="goal-progress-track"><div class="goal-progress-fill" style="--bar-pct: 80"></div></div>
+                      <span class="goal-pct">80%</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- PRIVACY NOTICE -->
+          <div class="privacy-notice">
+            <span class="privacy-icon">🔒</span>
+            <div>
+              <strong>Privacy and local-first data</strong>
+              <p class="fs-13 text-muted mt-2">
+                Terra stores all assessment answers, names, and logs exclusively in your browser's LocalStorage. No data is sent to external cloud servers. Your footprint is your business.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Dynamically override profile values on load if storage data exists
+    document.addEventListener("DOMContentLoaded", () => {
+      const data = localStorage.getItem("terra_user");
+      if (data) {
+        try {
+          const profile = JSON.parse(data);
+          document.querySelector(".profile-name").textContent = profile.name || "You";
+          
+          // Overwrite values
+          const rows = document.querySelectorAll(".data-row");
+          if (rows.length >= 6) {
+            rows[0].querySelector(".data-row-value").textContent = `${profile.city || 'Mumbai'}, India`;
+            rows[1].querySelector(".data-row-value").textContent = profile.household || '3–4 people';
+            rows[2].querySelector(".data-row-value").textContent = profile.commuteModes ? profile.commuteModes.join(", ") : 'Public transit';
+            rows[3].querySelector(".data-row-value").textContent = profile.electricBill || '₹1,000 – ₹2,500';
+            rows[4].querySelector(".data-row-value").textContent = profile.diet || 'Flexitarian';
+            rows[5].querySelector(".data-row-value").textContent = `${profile.flights || 0} round trip${profile.flights === 1 ? '' : 's'} / year`;
+          }
+
+          // Streak
+          const streakVal = localStorage.getItem("terra_streak_count") || "11";
+          document.querySelector(".profile-stat-val").textContent = streakVal;
+
+          // Render active target highlights if set
+          const goalsList = document.querySelector(".goals-list");
+          if (profile.goals && profile.goals.length > 0 && goalsList) {
+            goalsList.innerHTML = "";
+            profile.goals.forEach(goal => {
+              let icon = "📊";
+              let pct = 20; // default initial progress
+              if (goal.toLowerCase().includes("commute")) { icon = "🚗"; pct = 60; }
+              else if (goal.toLowerCase().includes("energy") || goal.toLowerCase().includes("cooling")) { icon = "🏠"; pct = 40; }
+              else if (goal.toLowerCase().includes("diet") || goal.toLowerCase().includes("food")) { icon = "🍽️"; pct = 80; }
+              else if (goal.toLowerCase().includes("travel")) { icon = "✈️"; pct = 30; }
+
+              goalsList.innerHTML += `
+                <div class="goal-row">
+                  <div class="goal-icon">${icon}</div>
+                  <div class="goal-info">
+                    <div class="goal-name">${goal}</div>
+                    <div class="goal-progress-wrap">
+                      <div class="goal-progress-track"><div class="goal-progress-fill" style="--bar-pct: ${pct}"></div></div>
+                      <span class="goal-pct">${pct}%</span>
+                    </div>
+                  </div>
+                </div>
+              `;
+            });
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

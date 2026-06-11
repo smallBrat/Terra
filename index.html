@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Terra — Know Your Footprint. Change Your Habits.</title>
+  <meta name="description" content="Terra helps you understand where your carbon emissions come from, track daily habits, and take small actions that add up to real change.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body class="page-landing">
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links" aria-label="Top navigation">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#what-we-track" class="nav-link">What we track</a>
+        <a href="dashboard.html" class="nav-link">Demo</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="onboarding.html" class="btn btn-primary btn-sm">Start free</a>
+      </div>
+      <button class="nav-mobile-toggle" id="mobileMenuToggle" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="hero-badge">Carbon awareness, personal scale</div>
+          <h1 class="hero-heading">Your carbon footprint,<br><em>finally legible.</em></h1>
+          <p class="hero-sub">Terra translates your everyday habits into a clear picture of your carbon impact — then shows you which changes actually move the needle. No guilt. Just clarity.</p>
+          <div class="hero-actions">
+            <a href="onboarding.html" class="btn btn-primary btn-lg">Calculate my footprint</a>
+            <a href="dashboard.html" class="btn btn-ghost btn-lg">See a sample dashboard</a>
+          </div>
+          <p class="hero-footnote">Takes about 4 minutes. Free, private, no sign-up required.</p>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-dashboard-preview">
+            <div class="preview-header">
+              <div class="preview-brand">◈ Terra</div>
+              <div class="preview-week">This week</div>
+            </div>
+            <div class="preview-footprint-ring">
+              <div class="ring-outer">
+                <div class="ring-inner">
+                  <div class="ring-value">34.2</div>
+                  <div class="ring-unit">kg CO₂e</div>
+                </div>
+              </div>
+              <div class="ring-label">Weekly footprint</div>
+            </div>
+            <div class="preview-categories">
+              <div class="cat-bar">
+                <div class="cat-label">
+                  <span class="cat-dot dot-travel"></span>
+                  <span>Commute</span>
+                </div>
+                <div class="cat-track">
+                  <div class="cat-fill" style="--bar-pct: 52"></div>
+                </div>
+                <span class="cat-val">17.8</span>
+              </div>
+              <div class="cat-bar">
+                <div class="cat-label">
+                  <span class="cat-dot dot-home"></span>
+                  <span>Home energy</span>
+                </div>
+                <div class="cat-track">
+                  <div class="cat-fill" style="--bar-pct: 28"></div>
+                </div>
+                <span class="cat-val">9.6</span>
+              </div>
+              <div class="cat-bar">
+                <div class="cat-label">
+                  <span class="cat-dot dot-food"></span>
+                  <span>Food</span>
+                </div>
+                <div class="cat-track">
+                  <div class="cat-fill" style="--bar-pct: 18"></div>
+                </div>
+                <span class="cat-val">6.1</span>
+              </div>
+              <div class="cat-bar">
+                <div class="cat-label">
+                  <span class="cat-dot dot-shop"></span>
+                  <span>Shopping</span>
+                </div>
+                <div class="cat-track">
+                  <div class="cat-fill" style="--bar-pct: 2"></div>
+                </div>
+                <span class="cat-val">0.7</span>
+              </div>
+            </div>
+            <div class="preview-action-card">
+              <div class="action-emoji">🚲</div>
+              <div class="action-text">
+                <strong>Try cycling Tuesday</strong>
+                <span>Could save ~3.2 kg this week</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Process</span>
+          <h2 class="section-heading">Built around how you actually live</h2>
+          <p class="section-sub">Most footprint tools ask you to dig up utility bills and remember every flight from 3 years ago. Terra works with what you know today.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-icon">📍</div>
+            <h3 class="step-title">Tell us about your life</h3>
+            <p class="step-desc">A short questionnaire about your home, commute, food preferences, and typical habits. We estimate, you confirm.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-icon">📊</div>
+            <h3 class="step-title">See your breakdown</h3>
+            <p class="step-desc">Your footprint appears by category — travel, home energy, food, and purchases. You'll see exactly where the weight is.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-icon">✓</div>
+            <h3 class="step-title">Get personal actions</h3>
+            <p class="step-desc">Recommendations ranked by real impact and realistic effort — no vague "use less plastic" advice. Specific. Measurable. Yours.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-icon">📈</div>
+            <h3 class="step-title">Track your progress</h3>
+            <p class="step-desc">Weekly check-ins take 90 seconds. You'll see your footprint shrink over time as habits shift. Small changes, real numbers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE TRACK -->
+    <section class="what-we-track" id="what-we-track">
+      <div class="container">
+        <div class="track-layout">
+          <div class="track-left">
+            <span class="section-label">Scope</span>
+            <h2 class="section-heading">The categories that actually matter for individuals</h2>
+            <p class="section-sub">Corporate carbon tracking tries to account for everything. Personal footprints come from a handful of categories — and those are where change happens.</p>
+            <a href="onboarding.html" class="btn btn-primary">Start your assessment</a>
+          </div>
+          <div class="track-right">
+            <div class="track-category">
+              <div class="tc-icon">🚗</div>
+              <div class="tc-content">
+                <h4>Transport & Commute</h4>
+                <p>Your car, public transit, rideshares, and flights. Often the largest single category for urban residents.</p>
+              </div>
+              <div class="tc-badge high">High impact</div>
+            </div>
+            <div class="track-category">
+              <div class="tc-icon">🏠</div>
+              <div class="tc-content">
+                <h4>Home Energy</h4>
+                <p>Electricity, heating, cooling, and how your home is powered. Shaped by your grid, appliances, and daily habits.</p>
+              </div>
+              <div class="tc-badge medium">Medium impact</div>
+            </div>
+            <div class="track-category">
+              <div class="tc-icon">🍽️</div>
+              <div class="tc-content">
+                <h4>Food & Diet</h4>
+                <p>Meat-heavy diets carry a real footprint. Shifting even two meals a week makes a measurable difference.</p>
+              </div>
+              <div class="tc-badge medium">Medium impact</div>
+            </div>
+            <div class="track-category">
+              <div class="tc-icon">📦</div>
+              <div class="tc-content">
+                <h4>Shopping & Deliveries</h4>
+                <p>New goods, packaging, and delivery logistics. Batching and mindful buying reduces this more than most expect.</p>
+              </div>
+              <div class="tc-badge low">Lower impact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SMALL ACTIONS -->
+    <section class="small-actions">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Perspective</span>
+          <h2 class="section-heading">Small changes add up. Quickly.</h2>
+          <p class="section-sub">Individual actions feel small. But when grounded in real data, the cumulative effect of a few habit changes is surprisingly large.</p>
+        </div>
+        <div class="actions-examples">
+          <div class="action-example">
+            <div class="ae-visual">
+              <div class="ae-bar bg-sage-300" style="--ae-height: 72px"></div>
+              <div class="ae-arrow">↓</div>
+              <div class="ae-bar bg-sage-500" style="--ae-height: 40px"></div>
+            </div>
+            <div class="ae-content">
+              <strong>Cycle twice a week instead of driving</strong>
+              <span class="ae-impact">Saves ~3.4 kg CO₂ per week</span>
+              <span class="ae-annual">~177 kg annually</span>
+            </div>
+          </div>
+          <div class="action-example">
+            <div class="ae-visual">
+              <div class="ae-bar bg-amber-200" style="--ae-height: 56px"></div>
+              <div class="ae-arrow">↓</div>
+              <div class="ae-bar bg-amber-400" style="--ae-height: 30px"></div>
+            </div>
+            <div class="ae-content">
+              <strong>One meat-free dinner per week</strong>
+              <span class="ae-impact">Saves ~1.2 kg CO₂ per week</span>
+              <span class="ae-annual">~62 kg annually</span>
+            </div>
+          </div>
+          <div class="action-example">
+            <div class="ae-visual">
+              <div class="ae-bar bg-stone-300" style="--ae-height: 44px"></div>
+              <div class="ae-arrow">↓</div>
+              <div class="ae-bar bg-stone-500" style="--ae-height: 20px"></div>
+            </div>
+            <div class="ae-content">
+              <strong>Batch weekly deliveries into one order</strong>
+              <span class="ae-impact">Saves ~0.8 kg CO₂ per week</span>
+              <span class="ae-annual">~42 kg annually</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="cta-strip">
+      <div class="container">
+        <div class="cta-strip-inner">
+          <div class="cta-text">
+            <h2>Ready to see your number?</h2>
+            <p>Four minutes of honest answers will give you a clearer picture than you'd expect.</p>
+          </div>
+          <a href="onboarding.html" class="btn btn-primary btn-lg">Calculate my footprint</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-mark">◈</span>
+          <span class="brand-name">Terra</span>
+        </a>
+        <p class="footer-tagline">Know your footprint. Change your habits.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <strong>Product</strong>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="breakdown.html">Breakdown</a>
+          <a href="actions.html">Actions</a>
+          <a href="insights.html">Insights</a>
+        </div>
+        <div class="footer-col">
+          <strong>Company</strong>
+          <a href="#">About</a>
+          <a href="#">Methodology</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Terra. Built for a warmer world that we're trying to slow down.</p>
+        <p class="footer-method">Emissions estimates based on IPCC, EPA, and peer-reviewed life cycle data.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

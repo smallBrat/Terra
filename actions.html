@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Action Library — Terra</title>
+  <meta name="description" content="Explore simple, actionable steps to reduce your carbon emissions. Filter by effort, category, and track your potential savings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="breakdown.html" class="nav-link">Breakdown</a>
+        <a href="actions.html" class="nav-link active">Actions</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm nav-avatar-btn" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link active">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Good evening, Arjun 👋</h1>
+          <p class="page-subtitle">Monday, 9 June 2025 · Week 23 of the year</p>
+        </div>
+        <div class="page-header-actions">
+          <a href="checkin.html" class="btn btn-primary btn-sm">+ Log today</a>
+        </div>
+      </div>
+
+      <!-- LAYOUT CONTAINER -->
+      <div class="actions-layout">
+
+        <!-- LEFT AREA: CARDS -->
+        <div>
+          <!-- FILTERS -->
+          <div class="actions-filters">
+            <span class="filter-label">Filter by:</span>
+            <button class="chip active" data-category="all">All categories</button>
+            <button class="chip" data-category="travel">🚗 Transport</button>
+            <button class="chip" data-category="home">🏠 Home energy</button>
+            <button class="chip" data-category="food">🍽️ Food</button>
+            <button class="chip" data-category="shopping">📦 Shopping</button>
+          </div>
+
+          <!-- ACTIONS LIST -->
+          <div class="actions-list">
+
+            <!-- ACTION 1 -->
+            <div class="action-card" data-category="travel" data-action-id="cycle-commute">
+              <span class="impact-rank">High Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">🚲</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">Swap 2 car trips for cycling</div>
+                  <p class="action-card-why">Your typical weekday commute is under 8 km — a distance easily covered in 25 minutes by bicycle.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−3.4 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Medium</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 95"></div></div>
+                  <span>95%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION 2 -->
+            <div class="action-card" data-category="home" data-action-id="ac-24">
+              <span class="impact-rank">High Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">❄️</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">Set AC to 24°C instead of 20°C</div>
+                  <p class="action-card-why">Each degree of AC temperature increase reduces compressor power consumption by approximately 6%.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−1.8 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Easy</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 80"></div></div>
+                  <span>80%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION 3 -->
+            <div class="action-card" data-category="food" data-action-id="meat-free-dinner">
+              <span class="impact-rank">Medium Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">🍛</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">One plant-based dinner this week</div>
+                  <p class="action-card-why">Replacing a single chicken or animal-based meal with lentils (dal) or fresh vegetables carries high benefits.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−1.1 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Easy</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 70"></div></div>
+                  <span>70%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION 4 -->
+            <div class="action-card" data-category="shopping" data-action-id="batch-deliveries">
+              <span class="impact-rank">Medium Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">📦</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">Batch weekly deliveries into one order</div>
+                  <p class="action-card-why">Ordering items individually triggers redundant courier transport runs. Batching groups logistics into a single route.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−0.8 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Easy</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 90"></div></div>
+                  <span>90%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION 5 -->
+            <div class="action-card" data-category="travel" data-action-id="metro-wednesday">
+              <span class="impact-rank">High Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">🚇</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">Take the metro on Wednesdays</div>
+                  <p class="action-card-why">Avoid mid-week traffic gridlock. Rail transit is up to 5 times more carbon-efficient than single-occupancy cars.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−2.8 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Medium</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 85"></div></div>
+                  <span>85%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ACTION 6 -->
+            <div class="action-card" data-category="home" data-action-id="led-switch">
+              <span class="impact-rank">Low Impact</span>
+              <div class="action-card-top">
+                <div class="action-card-icon-wrap">💡</div>
+                <div class="action-card-header">
+                  <div class="action-card-title">Upgrade remaining bulbs to LEDs</div>
+                  <p class="action-card-why">Modern LED fixtures draw 80% less electric power than halogen filaments and last up to 10 years longer.</p>
+                </div>
+                <button class="action-card-save">+ Save</button>
+              </div>
+              <div class="action-card-metrics">
+                <div class="acm-item">
+                  <span class="acm-label">Weekly Saving</span>
+                  <span class="acm-value impact">−0.4 kg</span>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Effort</span>
+                  <div class="effort-dots">
+                    <span class="effort-dot filled"></span>
+                    <span class="effort-dot"></span>
+                    <span class="effort-dot"></span>
+                  </div>
+                </div>
+                <div class="acm-item">
+                  <span class="acm-label">Difficulty</span>
+                  <span class="acm-value">Easy</span>
+                </div>
+              </div>
+              <div class="action-card-bottom">
+                <div class="action-card-suitability">
+                  <span>Relevance to your profile:</span>
+                  <div class="suitability-bar"><div class="suitability-fill" style="--bar-pct: 60"></div></div>
+                  <span>60%</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT AREA: SUMMARY SIDEBAR -->
+        <div class="actions-sidebar">
+          <div class="asb-card">
+            <div class="asb-title">Your Committed Plan</div>
+            <div class="potential-saving">−0.0 kg</div>
+            <div class="potential-saving-label">
+              <span>0 actions committed</span> this week. Select the actions on the left to add them to your plan.
+            </div>
+            
+            <div class="mt-5 pt-5 border-top-mineral-200 text-center">
+              <a href="checkin.html" class="btn btn-primary btn-sm w-100">Go to Daily Log</a>
+            </div>
+          </div>
+
+          <div class="asb-card bg-sage-100 border-dashed-sage">
+            <div class="fs-18 mb-2">🌿</div>
+            <div class="fs-14 fw-600 text-sage-800 mb-2">Optimistic Scaling</div>
+            <div class="fs-12 text-sage-700 lh-15">
+              Individual changes represent small steps. But when committed globally, standard models demonstrate aggregate emissions drop by 15–20% inside the first calendar quarter.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

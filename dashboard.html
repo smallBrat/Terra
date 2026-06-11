@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Dashboard — Terra</title>
+  <meta name="description" content="Your personal carbon footprint dashboard. See your weekly impact, biggest sources, and today's recommended actions.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="breakdown.html" class="nav-link">Breakdown</a>
+        <a href="actions.html" class="nav-link">Actions</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm nav-avatar-btn" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link active">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Good evening, Arjun 👋</h1>
+          <p class="page-subtitle">Monday, 9 June 2025 · Week 23 of the year</p>
+        </div>
+        <div class="page-header-actions">
+          <div class="toggle-group bg-raised">
+            <button class="toggle-option active" id="toggleWeek">Week</button>
+            <button class="toggle-option" id="toggleMonth">Month</button>
+          </div>
+          <a href="checkin.html" class="btn btn-primary btn-sm">+ Log today</a>
+        </div>
+      </div>
+
+      <!-- DASHBOARD GRID -->
+      <div class="dashboard-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="dashboard-left">
+
+          <!-- FOOTPRINT SUMMARY -->
+          <div class="footprint-summary-card">
+            <div class="fsc-top">
+              <div class="fsc-period">
+                <span class="fsc-period-label">Weekly footprint</span>
+              </div>
+              <div class="fsc-comparison better">↓ 8% vs last week</div>
+            </div>
+            <div class="fsc-main">
+              <div class="fsc-number-group">
+                <div class="fsc-number">34.2<span class="fsc-unit">kg CO₂e</span></div>
+                <p class="fsc-context max-w-260">
+                  You're <strong>18% below the national average</strong> of 41.7 kg/week for your household profile.<br>
+                  The climate-efficient range for your lifestyle is 22–28 kg/week.
+                </p>
+              </div>
+              <div class="fsc-donut-wrap">
+                <canvas id="donutChart" width="120" height="120"></canvas>
+                <div class="donut-legend">
+                  <div class="legend-item">
+                    <div class="legend-dot bg-amber-400"></div>
+                    <span class="legend-label">Commute</span>
+                    <span class="legend-value">17.8</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-dot bg-sage-500"></div>
+                    <span class="legend-label">Home energy</span>
+                    <span class="legend-value">9.6</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-dot bg-stone-400"></div>
+                    <span class="legend-label">Food</span>
+                    <span class="legend-value">6.1</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-dot bg-mineral-400"></div>
+                    <span class="legend-label">Shopping</span>
+                    <span class="legend-value">0.7</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CATEGORY BREAKDOWN -->
+          <div class="category-breakdown-card">
+            <div class="cbc-header">
+              <h2 class="cbc-title">Where it's coming from</h2>
+              <a href="breakdown.html" class="cbc-link">Full breakdown →</a>
+            </div>
+            <div class="cbc-rows">
+              <div class="cbc-row">
+                <div class="cbc-row-icon">🚗</div>
+                <div class="cbc-row-info">
+                  <div class="cbc-row-name">
+                    Commute &amp; travel
+                    <span class="badge badge-amber badge-xs">Biggest</span>
+                  </div>
+                  <div class="cbc-row-bar-wrap">
+                    <div class="cbc-bar-track"><div class="cbc-bar-fill fill-travel" style="--bar-pct: 52"></div></div>
+                    <span class="cbc-row-pct">52%</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="cbc-row-val">17.8 <span class="text-muted-sm">kg</span></div>
+                  <div class="cbc-row-sub">↑ 1.2 vs last week</div>
+                </div>
+              </div>
+              <div class="cbc-row">
+                <div class="cbc-row-icon">🏠</div>
+                <div class="cbc-row-info">
+                  <div class="cbc-row-name">Home energy</div>
+                  <div class="cbc-row-bar-wrap">
+                    <div class="cbc-bar-track"><div class="cbc-bar-fill fill-home" style="--bar-pct: 28"></div></div>
+                    <span class="cbc-row-pct">28%</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="cbc-row-val">9.6 <span class="text-muted-sm">kg</span></div>
+                  <div class="cbc-row-sub text-sage-600">↓ 0.8 vs last week</div>
+                </div>
+              </div>
+              <div class="cbc-row">
+                <div class="cbc-row-icon">🍽️</div>
+                <div class="cbc-row-info">
+                  <div class="cbc-row-name">Food &amp; diet</div>
+                  <div class="cbc-row-bar-wrap">
+                    <div class="cbc-bar-track"><div class="cbc-bar-fill fill-food" style="--bar-pct: 18"></div></div>
+                    <span class="cbc-row-pct">18%</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="cbc-row-val">6.1 <span class="text-muted-sm">kg</span></div>
+                  <div class="cbc-row-sub text-sage-600">↓ 0.3 vs last week</div>
+                </div>
+              </div>
+              <div class="cbc-row">
+                <div class="cbc-row-icon">📦</div>
+                <div class="cbc-row-info">
+                  <div class="cbc-row-name">Shopping &amp; deliveries</div>
+                  <div class="cbc-row-bar-wrap">
+                    <div class="cbc-bar-track"><div class="cbc-bar-fill fill-shop" style="--bar-pct: 2"></div></div>
+                    <span class="cbc-row-pct">2%</span>
+                  </div>
+                </div>
+                <div>
+                  <div class="cbc-row-val">0.7 <span class="text-muted-sm">kg</span></div>
+                  <div class="cbc-row-sub text-sage-600">↓ 0.2 vs last week</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TREND CHART -->
+          <div class="trend-card">
+            <div class="trend-header">
+              <h2 class="trend-title">8-week trend</h2>
+              <div class="flex items-center gap-4">
+                <div class="trend-stat">
+                  <span class="trend-stat-val">−12.3</span>
+                  <span class="trend-stat-label">kg saved over 8 weeks</span>
+                </div>
+                <div class="trend-delta down">↓ Improving</div>
+              </div>
+            </div>
+            <div class="chart-area">
+              <canvas id="trendChart" width="680" height="140"></canvas>
+            </div>
+            <div class="chart-x-labels">
+              <span class="chart-x-label">Wk 16</span>
+              <span class="chart-x-label">Wk 17</span>
+              <span class="chart-x-label">Wk 18</span>
+              <span class="chart-x-label">Wk 19</span>
+              <span class="chart-x-label">Wk 20</span>
+              <span class="chart-x-label">Wk 21</span>
+              <span class="chart-x-label">Wk 22</span>
+              <span class="chart-x-label">Wk 23</span>
+            </div>
+          </div>
+
+          <!-- HABITS THIS WEEK -->
+          <div class="habit-panel">
+            <div class="cbc-header">
+              <h2 class="cbc-title">Habit tracking this week</h2>
+              <a href="checkin.html" class="cbc-link">Log today →</a>
+            </div>
+            <div class="habit-grid">
+              <div class="habit-item">
+                <div class="habit-icon">🚲</div>
+                <div class="habit-info">
+                  <div class="habit-name">Cycling days</div>
+                  <div class="habit-bar-wrap"><div class="habit-bar-fill" style="--bar-pct: 60"></div></div>
+                </div>
+                <div class="habit-val">3/5</div>
+              </div>
+              <div class="habit-item">
+                <div class="habit-icon">🥗</div>
+                <div class="habit-info">
+                  <div class="habit-name">Meat-free meals</div>
+                  <div class="habit-bar-wrap"><div class="habit-bar-fill" style="--bar-pct: 80"></div></div>
+                </div>
+                <div class="habit-val">8/10</div>
+              </div>
+              <div class="habit-item">
+                <div class="habit-icon">❄️</div>
+                <div class="habit-info">
+                  <div class="habit-name">AC off before sleep</div>
+                  <div class="habit-bar-wrap"><div class="habit-bar-fill bg-amber-400" style="--bar-pct: 40"></div></div>
+                </div>
+                <div class="habit-val text-amber-500">2/5</div>
+              </div>
+              <div class="habit-item">
+                <div class="habit-icon">📦</div>
+                <div class="habit-info">
+                  <div class="habit-name">Batched deliveries</div>
+                  <div class="habit-bar-wrap"><div class="habit-bar-fill" style="--bar-pct: 100"></div></div>
+                </div>
+                <div class="habit-val text-sage-600">✓ Done</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RECOMMENDATIONS -->
+          <div class="rec-panel">
+            <div class="cbc-header">
+              <h2 class="cbc-title">Recommended actions</h2>
+              <a href="actions.html" class="cbc-link">All actions →</a>
+            </div>
+            <div class="rec-list">
+              <div class="rec-item">
+                <div class="rec-item-icon">🚲</div>
+                <div class="rec-item-content">
+                  <div class="rec-item-title">Swap 2 car trips for cycling this week</div>
+                  <div class="rec-item-desc">Your Tuesday and Thursday commutes are under 8 km — both are cyclable at your pace.</div>
+                  <div class="rec-item-tags">
+                    <span class="badge badge-sage">Transport</span>
+                    <span class="badge badge-mineral">Low effort</span>
+                  </div>
+                </div>
+                <div class="rec-item-impact">−3.4 kg</div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-item-icon">❄️</div>
+                <div class="rec-item-content">
+                  <div class="rec-item-title">Set AC to 24°C instead of 20°C</div>
+                  <div class="rec-item-desc">Each degree of AC increase reduces power draw by ~6%. Four degrees is significant.</div>
+                  <div class="rec-item-tags">
+                    <span class="badge badge-sage">Home energy</span>
+                    <span class="badge badge-mineral">Immediate</span>
+                  </div>
+                </div>
+                <div class="rec-item-impact">−1.8 kg</div>
+              </div>
+              <div class="rec-item">
+                <div class="rec-item-icon">🍛</div>
+                <div class="rec-item-content">
+                  <div class="rec-item-title">One plant-based dinner this week</div>
+                  <div class="rec-item-desc">Replacing one chicken meal with a dal or sabzi saves roughly 1.1 kg of CO₂.</div>
+                  <div class="rec-item-tags">
+                    <span class="badge badge-stone">Food</span>
+                    <span class="badge badge-mineral">Low effort</span>
+                  </div>
+                </div>
+                <div class="rec-item-impact">−1.1 kg</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="dashboard-right">
+
+          <!-- SPOTLIGHT: Biggest impact -->
+          <div class="spotlight-card">
+            <div class="sc-tag">⚡ Biggest opportunity this week</div>
+            <div class="sc-content">
+              <div class="sc-icon">🚗</div>
+              <div class="sc-text">
+                <h4>Your commute is your biggest lever</h4>
+                <p>Commuting accounts for 52% of your weekly footprint. Two fewer car trips could reduce this week's total by ~10%.</p>
+              </div>
+            </div>
+            <a href="actions.html" class="sc-action-link">See commute actions →</a>
+          </div>
+
+          <!-- TODAY'S ACTIONS -->
+          <div class="today-card">
+            <div class="today-label">What to do today</div>
+            <div class="today-item">
+              <div class="today-item-icon">🚲</div>
+              <div class="today-item-text">
+                <div class="today-item-title">Cycle to work</div>
+                <div class="today-item-sub">Instead of driving 7.2 km</div>
+              </div>
+              <div class="today-item-impact">−2.1 kg</div>
+            </div>
+            <div class="today-item">
+              <div class="today-item-icon">❄️</div>
+              <div class="today-item-text">
+                <div class="today-item-title">Raise AC to 24°C</div>
+                <div class="today-item-sub">From your usual 20°C</div>
+              </div>
+              <div class="today-item-impact">−0.4 kg</div>
+            </div>
+            <div class="today-item">
+              <div class="today-item-icon">🍽️</div>
+              <div class="today-item-text">
+                <div class="today-item-title">Plant-based dinner</div>
+                <div class="today-item-sub">Dal, sabzi, or salad</div>
+              </div>
+              <div class="today-item-impact">−1.1 kg</div>
+            </div>
+          </div>
+
+          <!-- STREAK -->
+          <div class="streak-card">
+            <div class="streak-top">
+              <div>
+                <div class="streak-label">Check-in streak</div>
+                <div class="text-muted-sm mt-2">Keep logging daily</div>
+              </div>
+              <div class="streak-count">11 <span>days</span></div>
+            </div>
+            <div class="streak-days">
+              <div class="streak-day done">M</div>
+              <div class="streak-day done">T</div>
+              <div class="streak-day done">W</div>
+              <div class="streak-day done">T</div>
+              <div class="streak-day done">F</div>
+              <div class="streak-day today">S</div>
+              <div class="streak-day">S</div>
+            </div>
+          </div>
+
+          <!-- RECENT IMPROVEMENTS -->
+          <div class="card rounded-xl">
+            <div class="cbc-header mb-4 pb-4 border-top-mineral">
+              <h2 class="cbc-title">Recent improvements</h2>
+            </div>
+            <div class="improvements-list">
+              <div class="improvement-item">
+                <div class="improvement-dot"></div>
+                <div class="improvement-text">Home energy dropped 0.8 kg this week</div>
+                <div class="improvement-val">−0.8 kg</div>
+              </div>
+              <div class="improvement-item">
+                <div class="improvement-dot"></div>
+                <div class="improvement-text">Batched all deliveries into one order</div>
+                <div class="improvement-val">−0.3 kg</div>
+              </div>
+              <div class="improvement-item">
+                <div class="improvement-dot"></div>
+                <div class="improvement-text">3 meat-free days vs 2 last week</div>
+                <div class="improvement-val">−0.4 kg</div>
+              </div>
+              <div class="improvement-item">
+                <div class="improvement-dot"></div>
+                <div class="improvement-text">Took metro on Wednesday instead of cab</div>
+                <div class="improvement-val">−1.2 kg</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/charts.js" defer></script>
+</body>
+</html>

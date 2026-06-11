@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Daily Check-in — Terra</title>
+  <meta name="description" content="Log your daily activities and habits on Terra. See how your choices today save carbon emissions in real-time.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="breakdown.html" class="nav-link">Breakdown</a>
+        <a href="actions.html" class="nav-link">Actions</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm active">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm nav-avatar" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link active">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <div class="checkin-layout">
+
+        <!-- HEADER CARD -->
+        <div class="checkin-header-card">
+          <span class="chc-icon">📝</span>
+          <div>
+            <div class="chc-label">Daily Assessment</div>
+            <h1 class="chc-title">Log Today's Habits</h1>
+            <p class="chc-sub">Check off what went well today. Takes under 60 seconds.</p>
+          </div>
+          <div class="chc-est">
+            <div class="chc-est-val">Wk 23</div>
+            <div class="chc-est-label">Current period</div>
+          </div>
+        </div>
+
+        <form id="checkinForm">
+
+          <!-- SECTION 1: TRANSPORT -->
+          <div class="ci-section">
+            <div class="ci-section-header">
+              <span class="ci-section-icon">🚗</span>
+              <span class="ci-section-title">Commuting & Transit</span>
+              <span class="ci-section-status">Daily travel</span>
+            </div>
+            <div class="ci-section-body">
+              
+              <div class="ci-row">
+                <div class="ci-row-label">
+                  <div>Commute distance today</div>
+                  <div class="ci-row-sub">Total round-trip mileage in kilometers</div>
+                </div>
+                <div class="ci-stepper" data-max="80">
+                  <button type="button" class="ci-stepper-btn" aria-label="Decrease distance">−</button>
+                  <span class="ci-stepper-val" id="commuteLogStepper">0</span>
+                  <button type="button" class="ci-stepper-btn" aria-label="Increase distance">+</button>
+                </div>
+              </div>
+
+              <div class="form-group mb-0">
+                <label class="form-label fs-13">Transit mode utilized</label>
+                <div class="ci-mode-chips">
+                  <button type="button" class="ci-mode-chip active">Solo car ride</button>
+                  <button type="button" class="ci-mode-chip">Carpool / Cab</button>
+                  <button type="button" class="ci-mode-chip">Public transit</button>
+                  <button type="button" class="ci-mode-chip">Bicycle / Walk</button>
+                  <button type="button" class="ci-mode-chip">Electric bike / EV</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECTION 2: DIET -->
+          <div class="ci-section">
+            <div class="ci-section-header">
+              <span class="ci-section-icon">🍽️</span>
+              <span class="ci-section-title">Food &amp; Meals</span>
+              <span class="ci-section-status">Sustainable choices</span>
+            </div>
+            <div class="ci-section-body">
+              <label class="form-label fs-13">Select meals today that were meat-free / plant-based</label>
+              
+              <div class="ci-meal-grid">
+                <div class="ci-meal-chip" data-meal="breakfast">
+                  <span class="ci-meal-emoji">🍳</span>
+                  <span class="ci-meal-label">Breakfast</span>
+                </div>
+                <div class="ci-meal-chip" data-meal="lunch">
+                  <span class="ci-meal-emoji">🍲</span>
+                  <span class="ci-meal-label">Lunch</span>
+                </div>
+                <div class="ci-meal-chip" data-meal="dinner">
+                  <span class="ci-meal-emoji">🥗</span>
+                  <span class="ci-meal-label">Dinner</span>
+                </div>
+                <div class="ci-meal-chip" data-meal="snacks">
+                  <span class="ci-meal-emoji">☕</span>
+                  <span class="ci-meal-label">Snacks</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECTION 3: HOME ENERGY -->
+          <div class="ci-section">
+            <div class="ci-section-header">
+              <span class="ci-section-icon">🏠</span>
+              <span class="ci-section-title">Home Cooling &amp; Power</span>
+              <span class="ci-section-status">Grid optimization</span>
+            </div>
+            <div class="ci-section-body">
+              
+              <div class="form-group mb-3">
+                <label class="form-label fs-13">Air Conditioning settings today</label>
+                <div class="ci-mode-chips">
+                  <button type="button" class="ci-mode-chip active">AC at 20°C (standard)</button>
+                  <button type="button" class="ci-mode-chip">AC at 24°C (recommended)</button>
+                  <button type="button" class="ci-mode-chip">AC turned off (fans only)</button>
+                </div>
+              </div>
+
+              <div class="ci-row pt-3 border-top-mineral">
+                <div class="ci-row-label">
+                  <div>Standby power check</div>
+                  <div class="ci-row-sub">Turned off appliances at wall plugs before sleeping</div>
+                </div>
+                <label class="ci-toggle">
+                  <input type="checkbox">
+                  <span class="ci-toggle-track"></span>
+                  <span class="ci-toggle-thumb"></span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SECTION 4: SHOPPING -->
+          <div class="ci-section">
+            <div class="ci-section-header">
+              <span class="ci-section-icon">📦</span>
+              <span class="ci-section-title">Deliveries &amp; Purchases</span>
+              <span class="ci-section-status">Supply logistics</span>
+            </div>
+            <div class="ci-section-body">
+              
+              <div class="ci-row">
+                <div class="ci-row-label">
+                  <div>Batched dispatch</div>
+                  <div class="ci-row-sub">Arranged today's orders into a single consolidated delivery day</div>
+                </div>
+                <label class="ci-toggle">
+                  <input type="checkbox">
+                  <span class="ci-toggle-track"></span>
+                  <span class="ci-toggle-thumb"></span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- SUBMIT AREA -->
+          <div class="ci-submit-area">
+            <div class="ci-impact-preview">
+              <span>Estimated savings for today:</span>
+              <span class="ci-impact-val">− 0.0 kg CO₂e</span>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">Submit Log</button>
+            <a href="dashboard.html" class="btn btn-ghost text-center">Cancel</a>
+          </div>
+
+        </form>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

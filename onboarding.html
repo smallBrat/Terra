@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Get started — Terra</title>
+  <meta name="description" content="Tell us a bit about your lifestyle and we'll calculate your personal carbon footprint in minutes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/onboarding.css">
+</head>
+<body class="page-onboarding">
+
+  <!-- HEADER -->
+  <header class="onboarding-header">
+    <a href="index.html" class="ob-brand">
+      <span class="brand-mark">◈</span>
+      <span class="brand-name">Terra</span>
+    </a>
+    <div class="flex items-center gap-6">
+      <span id="stepCounterDisplay" class="fs-13 text-muted">Step 1 of 7</span>
+      <button class="ob-skip">Skip for now →</button>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="ob-progress-bar">
+    <div class="ob-progress-fill" id="progressFill" style="--progress-pct: 14.28"></div>
+  </div>
+
+  <!-- MAIN WRAPPER -->
+  <div class="onboarding-wrapper">
+
+    <!-- SIDEBAR -->
+    <aside class="ob-sidebar">
+      <div class="ob-sidebar-step">
+        <div class="ob-step-tag" id="sidebarTag">Step 1 of 7</div>
+        <h2 class="ob-step-title" id="sidebarTitle">Your home &amp; location</h2>
+        <p class="ob-step-desc" id="sidebarDesc">Where you live shapes a big part of your carbon picture — energy grids, climate, and transit options all vary by location.</p>
+      </div>
+      <nav class="ob-steps-list" id="stepsNav">
+        <div class="ob-step-item active" data-step="1">
+          <div class="ob-dot">1</div>
+          <span class="ob-step-name">Home &amp; location</span>
+        </div>
+        <div class="ob-step-item" data-step="2">
+          <div class="ob-dot">2</div>
+          <span class="ob-step-name">Commute habits</span>
+        </div>
+        <div class="ob-step-item" data-step="3">
+          <div class="ob-dot">3</div>
+          <span class="ob-step-name">Home energy</span>
+        </div>
+        <div class="ob-step-item" data-step="4">
+          <div class="ob-dot">4</div>
+          <span class="ob-step-name">Food preferences</span>
+        </div>
+        <div class="ob-step-item" data-step="5">
+          <div class="ob-dot">5</div>
+          <span class="ob-step-name">Shopping &amp; delivery</span>
+        </div>
+        <div class="ob-step-item" data-step="6">
+          <div class="ob-dot">6</div>
+          <span class="ob-step-name">Travel patterns</span>
+        </div>
+        <div class="ob-step-item" data-step="7">
+          <div class="ob-dot">7</div>
+          <span class="ob-step-name">Your goals</span>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- CONTENT -->
+    <main class="ob-content">
+
+      <!-- STEP 1: Home & Location -->
+      <div class="ob-step-panel active" id="step-1">
+        <div class="ob-panel-label">Home & Location</div>
+        <h1 class="ob-panel-title">Where do you live?</h1>
+        <p class="ob-panel-sub">Your local energy grid and climate affect your footprint more than you might expect.</p>
+
+        <div class="ob-form-grid">
+          <div class="form-group ob-form-full">
+            <label class="form-label" for="city">City or region</label>
+            <input class="form-input" id="city" type="text" placeholder="e.g. Mumbai, Delhi, Bangalore…" autocomplete="address-level2" required>
+            <p class="form-hint">We use this to estimate grid emissions and local transit options.</p>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="homeType">Home type</label>
+            <select class="form-input form-select" id="homeType">
+              <option value="">Select one</option>
+              <option>Apartment (small, 1–2 rooms)</option>
+              <option>Apartment (medium, 3–4 rooms)</option>
+              <option>Independent house</option>
+              <option>Shared accommodation</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="household">Household size</label>
+            <select class="form-input form-select" id="household">
+              <option value="">Select one</option>
+              <option>Just me</option>
+              <option>2 people</option>
+              <option>3–4 people</option>
+              <option>5 or more</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ob-nav">
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Commute -->
+      <div class="ob-step-panel" id="step-2">
+        <div class="ob-panel-label">Commute & Transport</div>
+        <h1 class="ob-panel-title">How do you typically get around?</h1>
+        <p class="ob-panel-sub">Select everything that applies to your regular week.</p>
+
+        <div class="ob-options-grid">
+          <div class="ob-option-card">
+            <div class="ob-option-icon">🚗</div>
+            <div class="ob-option-text">
+              <strong>Personal car</strong>
+              <span>Petrol, diesel or CNG</span>
+            </div>
+          </div>
+          <div class="ob-option-card">
+            <div class="ob-option-icon">🛵</div>
+            <div class="ob-option-text">
+              <strong>Two-wheeler</strong>
+              <span>Bike, scooter or moped</span>
+            </div>
+          </div>
+          <div class="ob-option-card">
+            <div class="ob-option-icon">🚌</div>
+            <div class="ob-option-text">
+              <strong>Public transit</strong>
+              <span>Bus, metro, local train</span>
+            </div>
+          </div>
+          <div class="ob-option-card">
+            <div class="ob-option-icon">🚲</div>
+            <div class="ob-option-text">
+              <strong>Cycling / walking</strong>
+              <span>Human-powered commute</span>
+            </div>
+          </div>
+          <div class="ob-option-card">
+            <div class="ob-option-icon">🚕</div>
+            <div class="ob-option-text">
+              <strong>Cab / rideshare</strong>
+              <span>Ola, Uber, auto-rickshaw</span>
+            </div>
+          </div>
+          <div class="ob-option-card">
+            <div class="ob-option-icon">⚡</div>
+            <div class="ob-option-text">
+              <strong>Electric vehicle</strong>
+              <span>EV car or bike</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-8">
+          <label class="form-label" for="commuteKm">How many km do you travel on a typical weekday?</label>
+          <div class="ob-slider-group mb-0">
+            <div class="ob-slider-labels">
+              <span>0 km</span>
+              <span>100 km</span>
+            </div>
+            <input class="ob-slider" id="commuteKm" type="range" min="0" max="100" value="15"
+              oninput="document.getElementById('commuteKmVal').textContent=this.value"
+              aria-describedby="commuteKmVal">
+            <div class="ob-slider-value"><span id="commuteKmVal">15</span><span class="ob-slider-unit">km / day</span></div>
+          </div>
+        </div>
+
+        <div class="ob-nav">
+          <button class="ob-back-btn">← Back</button>
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Home Energy -->
+      <div class="ob-step-panel" id="step-3">
+        <div class="ob-panel-label">Home Energy</div>
+        <h1 class="ob-panel-title">How do you power your home?</h1>
+        <p class="ob-panel-sub">Cooling and heating are often the biggest household energy drivers in India.</p>
+
+        <div class="ob-options-list mb-6">
+          <div class="form-group">
+            <label class="form-label">Primary energy source for cooking</label>
+            <div class="ob-options-grid mb-0">
+              <div class="ob-option-card">
+                <div class="ob-option-icon">🔵</div>
+                <div class="ob-option-text"><strong>LPG / piped gas</strong><span>Cylinder or city gas</span></div>
+              </div>
+              <div class="ob-option-card">
+                <div class="ob-option-icon">⚡</div>
+                <div class="ob-option-text"><strong>Electric induction</strong><span>Induction cooktop</span></div>
+              </div>
+              <div class="ob-option-card">
+                <div class="ob-option-icon">🪵</div>
+                <div class="ob-option-text"><strong>Biomass / firewood</strong><span>Rural or traditional</span></div>
+              </div>
+              <div class="ob-option-card">
+                <div class="ob-option-icon">☀️</div>
+                <div class="ob-option-text"><strong>Solar</strong><span>Solar cooker or hybrid</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-6">
+          <label class="form-label">Do you use air conditioning?</label>
+          <div class="ob-options-grid ob-options-cols-3 mb-0">
+            <div class="ob-option-card">
+              <div class="ob-option-icon">❄️</div>
+              <div class="ob-option-text"><strong>Yes, most of the year</strong><span>6+ months</span></div>
+            </div>
+            <div class="ob-option-card">
+              <div class="ob-option-icon">🌡️</div>
+              <div class="ob-option-text"><strong>Seasonally</strong><span>Summers only</span></div>
+            </div>
+            <div class="ob-option-card">
+              <div class="ob-option-icon">🌬️</div>
+              <div class="ob-option-text"><strong>No AC</strong><span>Fans or natural cooling</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="electricBill">Approximate monthly electricity bill</label>
+          <select class="form-input form-select" id="electricBill">
+            <option value="">Select a range</option>
+            <option>Under ₹500</option>
+            <option>₹500 – ₹1,000</option>
+            <option>₹1,000 – ₹2,500</option>
+            <option>₹2,500 – ₹5,000</option>
+            <option>Over ₹5,000</option>
+          </select>
+          <p class="form-hint">Helps us estimate your household's energy consumption more accurately.</p>
+        </div>
+
+        <div class="ob-nav mt-8">
+          <button class="ob-back-btn">← Back</button>
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Food -->
+      <div class="ob-step-panel" id="step-4">
+        <div class="ob-panel-label">Food & Diet</div>
+        <h1 class="ob-panel-title">What does your diet look like?</h1>
+        <p class="ob-panel-sub">No judgement here. Food choices account for about 20–25% of a typical person's footprint.</p>
+
+        <div class="form-group mb-6">
+          <label class="form-label">Best description of your diet</label>
+          <div class="ob-options-list mb-0">
+            <div class="ob-option-row">
+              <div class="ob-option-icon ob-option-icon-sm">🥗</div>
+              <div class="ob-option-text"><strong>Mostly vegetarian or vegan</strong><span class="d-block fs-13 text-muted">Occasional dairy or eggs, rarely meat</span></div>
+              <div class="ob-check"></div>
+            </div>
+            <div class="ob-option-row">
+              <div class="ob-option-icon ob-option-icon-sm">🐟</div>
+              <div class="ob-option-text"><strong>Flexitarian</strong><span class="d-block fs-13 text-muted">Mostly plant-based but eat meat a few times a week</span></div>
+              <div class="ob-check"></div>
+            </div>
+            <div class="ob-option-row">
+              <div class="ob-option-icon ob-option-icon-sm">🍗</div>
+              <div class="ob-option-text"><strong>Regular meat eater</strong><span class="d-block fs-13 text-muted">Chicken, fish, or red meat most days</span></div>
+              <div class="ob-check"></div>
+            </div>
+            <div class="ob-option-row">
+              <div class="ob-option-icon ob-option-icon-sm">🥩</div>
+              <div class="ob-option-text"><strong>Heavy meat diet</strong><span class="d-block fs-13 text-muted">Red meat is a daily staple</span></div>
+              <div class="ob-check"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">How often do you eat at restaurants or order in?</label>
+          <select class="form-input form-select">
+            <option>Rarely — mostly home-cooked</option>
+            <option>A few times a week</option>
+            <option>Most meals are ordered or eaten out</option>
+          </select>
+        </div>
+
+        <div class="ob-nav mt-8">
+          <button class="ob-back-btn">← Back</button>
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 5: Shopping -->
+      <div class="ob-step-panel" id="step-5">
+        <div class="ob-panel-label">Shopping & Deliveries</div>
+        <h1 class="ob-panel-title">How much do you shop and order?</h1>
+        <p class="ob-panel-sub">Packaging, delivery logistics, and new goods all carry a footprint. Buying less and buying smart helps.</p>
+
+        <div class="form-group mb-6">
+          <label class="form-label">Online deliveries per week on average</label>
+          <div class="ob-slider-group mb-0">
+            <div class="ob-slider-labels"><span>0</span><span>10+</span></div>
+            <input class="ob-slider" type="range" min="0" max="10" value="3"
+              oninput="document.getElementById('deliveriesVal').textContent=this.value">
+            <div class="ob-slider-value"><span id="deliveriesVal">3</span><span class="ob-slider-unit">deliveries / week</span></div>
+          </div>
+        </div>
+
+        <div class="form-group mb-6">
+          <label class="form-label">How often do you buy new clothes or electronics?</label>
+          <div class="ob-options-list mb-0">
+            <div class="ob-option-row">
+              <span>Rarely — I keep things until they wear out</span>
+              <div class="ob-check"></div>
+            </div>
+            <div class="ob-option-row">
+              <span>Occasionally — a few purchases per month</span>
+              <div class="ob-check"></div>
+            </div>
+            <div class="ob-option-row">
+              <span>Frequently — regular online shopping</span>
+              <div class="ob-check"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Which of these apply to you? (Select all that fit)</label>
+          <div class="ob-chips">
+            <button class="chip">♻️ I buy second-hand</button>
+            <button class="chip">🛍️ I bring reusable bags</button>
+            <button class="chip">📦 I batch my deliveries</button>
+            <button class="chip">🔧 I repair before replacing</button>
+            <button class="chip">🌱 I prefer sustainable brands</button>
+          </div>
+        </div>
+
+        <div class="ob-nav mt-8">
+          <button class="ob-back-btn">← Back</button>
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 6: Travel -->
+      <div class="ob-step-panel" id="step-6">
+        <div class="ob-panel-label">Long-distance Travel</div>
+        <h1 class="ob-panel-title">How often do you travel long distances?</h1>
+        <p class="ob-panel-sub">Flights are one of the highest single-activity emission sources. Even one flight can outweigh months of other changes.</p>
+
+        <div class="form-group mb-6">
+          <label class="form-label">Flights per year (round trips)</label>
+          <div class="ob-slider-group mb-0">
+            <div class="ob-slider-labels"><span>0</span><span>12+</span></div>
+            <input class="ob-slider" type="range" min="0" max="12" value="2"
+              oninput="document.getElementById('flightsVal').textContent=this.value">
+            <div class="ob-slider-value"><span id="flightsVal">2</span><span class="ob-slider-unit">flights / year</span></div>
+          </div>
+        </div>
+
+        <div class="form-group mb-6">
+          <label class="form-label">What type of flights do you mainly take?</label>
+          <div class="ob-options-grid ob-options-cols-3 mb-0">
+            <div class="ob-option-card">
+              <div class="ob-option-icon">✈️</div>
+              <div class="ob-option-text"><strong>Domestic</strong><span>Within India</span></div>
+            </div>
+            <div class="ob-option-card">
+              <div class="ob-option-icon">🌏</div>
+              <div class="ob-option-text"><strong>Short-haul intl.</strong><span>Asia, Middle East</span></div>
+            </div>
+            <div class="ob-option-card">
+              <div class="ob-option-icon">🌍</div>
+              <div class="ob-option-text"><strong>Long-haul</strong><span>Europe, Americas</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Train or bus travel per month</label>
+          <select class="form-input form-select">
+            <option>Rarely / never</option>
+            <option>Once or twice</option>
+            <option>Weekly</option>
+            <option>Multiple times a week</option>
+          </select>
+        </div>
+
+        <div class="ob-nav mt-8">
+          <button class="ob-back-btn">← Back</button>
+          <button class="btn btn-primary">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 7: Goals -->
+      <div class="ob-step-panel" id="step-7">
+        <div class="ob-panel-label">Your Goals</div>
+        <h1 class="ob-panel-title">What matters most to you?</h1>
+        <p class="ob-panel-sub">We'll prioritise your suggestions based on what you actually care about. You can change this anytime.</p>
+
+        <div class="ob-goals-grid mb-6">
+          <div class="ob-goal-card">
+            <div class="ob-goal-icon-wrap">🚗</div>
+            <div class="ob-goal-text">
+              <strong>Reduce my commute footprint</strong>
+              <span>Better transport choices, fewer solo rides</span>
+            </div>
+            <div class="ob-goal-select"></div>
+          </div>
+          <div class="ob-goal-card">
+            <div class="ob-goal-icon-wrap">🏠</div>
+            <div class="ob-goal-text">
+              <strong>Cut my home energy usage</strong>
+              <span>Smarter cooling, efficient appliances</span>
+            </div>
+            <div class="ob-goal-select"></div>
+          </div>
+          <div class="ob-goal-card">
+            <div class="ob-goal-icon-wrap">🍽️</div>
+            <div class="ob-goal-text">
+              <strong>Shift my diet gradually</strong>
+              <span>Small, sustainable food habit changes</span>
+            </div>
+            <div class="ob-goal-select"></div>
+          </div>
+          <div class="ob-goal-card">
+            <div class="ob-goal-icon-wrap">✈️</div>
+            <div class="ob-goal-text">
+              <strong>Understand my travel impact</strong>
+              <span>See how flights compare to daily habits</span>
+            </div>
+            <div class="ob-goal-select"></div>
+          </div>
+          <div class="ob-goal-card">
+            <div class="ob-goal-icon-wrap">📊</div>
+            <div class="ob-goal-text">
+              <strong>Just track and understand</strong>
+              <span>Build awareness before making changes</span>
+            </div>
+            <div class="ob-goal-select"></div>
+          </div>
+        </div>
+
+        <div class="form-group mb-8">
+          <label class="form-label" for="targetReduction">Target annual reduction (optional)</label>
+          <select class="form-input form-select" id="targetReduction">
+            <option>I'll start with just tracking</option>
+            <option>Reduce by 5–10% this year</option>
+            <option>Reduce by 10–20% this year</option>
+            <option>Reduce by more than 20%</option>
+          </select>
+          <p class="form-hint">The average effective goal for first-year users is 10–15% reduction.</p>
+        </div>
+
+        <div class="ob-nav">
+          <button class="ob-back-btn">← Back</button>
+          <a href="dashboard.html" class="btn btn-primary">See my footprint →</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/onboarding.js"></script>
+</body>
+</html>

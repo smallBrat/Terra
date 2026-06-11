@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <title>Footprint Breakdown — Terra</title>
+  <meta name="description" content="A detailed breakdown of your carbon footprint. Understand how travel, home energy, food, and shopping contribute to your overall impact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/design-system.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/screens.css">
+</head>
+<body class="page-app">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NAV -->
+  <header class="site-nav">
+    <div class="nav-inner container-wide">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">Terra</span>
+      </a>
+      <nav class="nav-links ml-6" aria-label="Top navigation">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="breakdown.html" class="nav-link active">Breakdown</a>
+        <a href="actions.html" class="nav-link">Actions</a>
+        <a href="insights.html" class="nav-link">Insights</a>
+      </nav>
+      <div class="nav-cta-group">
+        <a href="checkin.html" class="btn btn-secondary btn-sm">Log today</a>
+        <a href="profile.html" class="btn btn-ghost btn-sm nav-avatar-btn" aria-label="Profile">🌿</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" role="complementary" aria-label="Sidebar">
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a href="dashboard.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◉</span> Dashboard
+        </a>
+        <a href="breakdown.html" class="sidebar-link active">
+          <span class="sidebar-link-icon">◧</span> Breakdown
+        </a>
+        <a href="actions.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◈</span> Actions
+        </a>
+        <a href="checkin.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◎</span> Log today
+        </a>
+        <a href="insights.html" class="sidebar-link">
+          <span class="sidebar-link-icon">◇</span> Insights
+        </a>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-label">Account</div>
+          <a href="profile.html" class="sidebar-link">
+            <span class="sidebar-link-icon">◻</span> Profile & Goals
+          </a>
+        </div>
+      </nav>
+
+      <!-- Mini footprint in sidebar -->
+      <div class="sidebar-footprint">
+        <div class="sidebar-footprint-card">
+          <div class="sidebar-footprint-label">This week</div>
+          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-unit">kg CO₂e</div>
+          <div class="sidebar-footprint-delta">
+            ↓ 8% vs last week
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="app-main" id="main-content">
+
+      <!-- PAGE HEADER -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Good evening, Arjun 👋</h1>
+          <p class="page-subtitle">Monday, 9 June 2025 · Week 23 of the year</p>
+        </div>
+        <div class="page-header-actions">
+          <a href="checkin.html" class="btn btn-primary btn-sm">+ Log today</a>
+        </div>
+      </div>
+
+      <!-- BREAKDOWN HERO -->
+      <div class="breakdown-hero">
+        <div class="bh-left">
+          <div class="bh-total-label">Total Carbon Footprint</div>
+          <div class="bh-total-val">34.2 <span class="bh-total-unit">kg CO₂e/week</span></div>
+          <p class="bh-context-text">
+            Based on your typical habits and local parameters. Shifting just a few actions can help you reach your climate goal.
+          </p>
+          
+          <div class="bh-comparison">
+            <div class="bh-comp-row">
+              <span class="bh-comp-label">Yours</span>
+              <div class="bh-comp-track">
+                <div class="bh-comp-fill yours" style="--bar-pct: 71"></div>
+              </div>
+              <span class="bh-comp-val">34.2 kg</span>
+            </div>
+            <div class="bh-comp-row">
+              <span class="bh-comp-label">Local Average</span>
+              <div class="bh-comp-track">
+                <div class="bh-comp-fill avg" style="--bar-pct: 87"></div>
+              </div>
+              <span class="bh-comp-val">41.7 kg</span>
+            </div>
+            <div class="bh-comp-row">
+              <span class="bh-comp-label">1.5°C Goal</span>
+              <div class="bh-comp-track">
+                <div class="bh-comp-fill target" style="--bar-pct: 48"></div>
+              </div>
+              <span class="bh-comp-val">23.0 kg</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bh-right">
+          <div class="bh-stacked-bar">
+            <div class="bh-bar-segment seg-travel" style="--seg-pct: 52" title="Travel: 52%"></div>
+            <div class="bh-bar-segment seg-home" style="--seg-pct: 28" title="Energy: 28%"></div>
+            <div class="bh-bar-segment seg-food" style="--seg-pct: 18" title="Food: 18%"></div>
+            <div class="bh-bar-segment seg-shop" style="--seg-pct: 2" title="Shopping: 2%"></div>
+          </div>
+          <div class="bh-bar-legend">
+            <div class="bh-leg-item">
+              <div class="bh-leg-swatch bg-amber-400"></div>
+              <span class="bh-leg-name">Travel</span>
+              <span class="bh-leg-pct">52%</span>
+            </div>
+            <div class="bh-leg-item">
+              <div class="bh-leg-swatch bg-sage-500"></div>
+              <span class="bh-leg-name">Energy</span>
+              <span class="bh-leg-pct">28%</span>
+            </div>
+            <div class="bh-leg-item">
+              <div class="bh-leg-swatch bg-stone-400"></div>
+              <span class="bh-leg-name">Food</span>
+              <span class="bh-leg-pct">18%</span>
+            </div>
+            <div class="bh-leg-item">
+              <div class="bh-leg-swatch bg-mineral-300"></div>
+              <span class="bh-leg-name">Shopping</span>
+              <span class="bh-leg-pct">2%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCORDION DETAILS -->
+      <div class="breakdown-categories">
+        
+        <!-- COMMUTE -->
+        <div class="bdc-card open">
+          <div class="bdc-header">
+            <div class="bdc-icon travel">🚗</div>
+            <div class="bdc-name-wrap">
+              <div class="bdc-name">Commute &amp; Travel</div>
+              <div class="bdc-sub">Car, scooter, public transit, and flights</div>
+            </div>
+            <div class="bdc-value">17.8 <span class="bdc-value-unit">kg CO₂e</span></div>
+            <span class="bdc-chevron">▼</span>
+          </div>
+          <div class="bdc-body">
+            <p class="bdc-explanation">
+              Transportation represents your largest emissions share. Daily solo driving is the primary source. Your long-distance flight parameters add an amortized weekly impact of roughly 3.1 kg CO₂e.
+            </p>
+            <div class="bdc-mini-trend">
+              <div class="bdc-bar travel" style="--bar-pct: 90" title="Wk 16: 19.5"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 85" title="Wk 17: 18.2"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 80" title="Wk 18: 17.8"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 70" title="Wk 19: 16.5"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 75" title="Wk 20: 17.0"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 72" title="Wk 21: 16.8"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 80" title="Wk 22: 17.5"></div>
+              <div class="bdc-bar travel" style="--bar-pct: 82" title="Wk 23: 17.8"></div>
+            </div>
+            <div class="bdc-tips">
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">🚲</span>
+                <span>Cycling to work once a week saves roughly 2.1 kg CO₂e.</span>
+              </div>
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">🚇</span>
+                <span>Using local transit instead of cabs reduces trip emissions by 75%.</span>
+              </div>
+            </div>
+            <div class="bdc-potential">
+              Potential Savings: up to 6.2 kg / week
+            </div>
+          </div>
+        </div>
+
+        <!-- HOME ENERGY -->
+        <div class="bdc-card">
+          <div class="bdc-header">
+            <div class="bdc-icon home">🏠</div>
+            <div class="bdc-name-wrap">
+              <div class="bdc-name">Home Energy</div>
+              <div class="bdc-sub">Electricity, heating, cooking, and cooling</div>
+            </div>
+            <div class="bdc-value">9.6 <span class="bdc-value-unit">kg CO₂e</span></div>
+            <span class="bdc-chevron">▼</span>
+          </div>
+          <div class="bdc-body">
+            <p class="bdc-explanation">
+              Home energy emissions are calculated using your utility bill estimates and household size. Air conditioning and high-load appliances drive peak demand.
+            </p>
+            <div class="bdc-mini-trend">
+              <div class="bdc-bar home" style="--bar-pct: 85" title="Wk 16: 10.4"></div>
+              <div class="bdc-bar home" style="--bar-pct: 85" title="Wk 17: 10.4"></div>
+              <div class="bdc-bar home" style="--bar-pct: 80" title="Wk 18: 9.8"></div>
+              <div class="bdc-bar home" style="--bar-pct: 75" title="Wk 19: 9.2"></div>
+              <div class="bdc-bar home" style="--bar-pct: 75" title="Wk 20: 9.2"></div>
+              <div class="bdc-bar home" style="--bar-pct: 80" title="Wk 21: 9.8"></div>
+              <div class="bdc-bar home" style="--bar-pct: 80" title="Wk 22: 9.8"></div>
+              <div class="bdc-bar home" style="--bar-pct: 78" title="Wk 23: 9.6"></div>
+            </div>
+            <div class="bdc-tips">
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">❄️</span>
+                <span>Setting AC thermostat to 24°C instead of 20°C reduces compressor draw by 24%.</span>
+              </div>
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">💡</span>
+                <span>Switching off standby energy leaks yields small but consistent savings.</span>
+              </div>
+            </div>
+            <div class="bdc-potential">
+              Potential Savings: up to 3.4 kg / week
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOD -->
+        <div class="bdc-card">
+          <div class="bdc-header">
+            <div class="bdc-icon food">🍽️</div>
+            <div class="bdc-name-wrap">
+              <div class="bdc-name">Food &amp; Diet</div>
+              <div class="bdc-sub">Diet preferences, dining out, and waste</div>
+            </div>
+            <div class="bdc-value">6.1 <span class="bdc-value-unit">kg CO₂e</span></div>
+            <span class="bdc-chevron">▼</span>
+          </div>
+          <div class="bdc-body">
+            <p class="bdc-explanation">
+              Your flexitarian profile carries a moderate baseline footprint. Red meat and dairy are the primary contributors, followed by restaurant logistics and packaging from ordering in.
+            </p>
+            <div class="bdc-mini-trend">
+              <div class="bdc-bar food" style="--bar-pct: 90" title="Wk 16: 7.2"></div>
+              <div class="bdc-bar food" style="--bar-pct: 85" title="Wk 17: 6.8"></div>
+              <div class="bdc-bar food" style="--bar-pct: 85" title="Wk 18: 6.8"></div>
+              <div class="bdc-bar food" style="--bar-pct: 80" title="Wk 19: 6.4"></div>
+              <div class="bdc-bar food" style="--bar-pct: 80" title="Wk 20: 6.4"></div>
+              <div class="bdc-bar food" style="--bar-pct: 75" title="Wk 21: 6.0"></div>
+              <div class="bdc-bar food" style="--bar-pct: 75" title="Wk 22: 6.0"></div>
+              <div class="bdc-bar food" style="--bar-pct: 76" title="Wk 23: 6.1"></div>
+            </div>
+            <div class="bdc-tips">
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">🥗</span>
+                <span>Adding one extra vegetarian day per week saves about 1.2 kg CO₂e.</span>
+              </div>
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">🍛</span>
+                <span>Replacing animal protein with lentils or beans reduces dish emissions by 80%.</span>
+              </div>
+            </div>
+            <div class="bdc-potential">
+              Potential Savings: up to 2.4 kg / week
+            </div>
+          </div>
+        </div>
+
+        <!-- SHOPPING -->
+        <div class="bdc-card">
+          <div class="bdc-header">
+            <div class="bdc-icon shop">📦</div>
+            <div class="bdc-name-wrap">
+              <div class="bdc-name">Shopping &amp; Purchases</div>
+              <div class="bdc-sub">Deliveries, new goods, and consumer choices</div>
+            </div>
+            <div class="bdc-value">0.7 <span class="bdc-value-unit">kg CO₂e</span></div>
+            <span class="bdc-chevron">▼</span>
+          </div>
+          <div class="bdc-body">
+            <p class="bdc-explanation">
+              Shopping emissions reflect manufacturing overhead and high delivery dispatch rates. Bringing reusable bags and batching your items lowers distribution footprints.
+            </p>
+            <div class="bdc-mini-trend">
+              <div class="bdc-bar shop" style="--bar-pct: 100" title="Wk 16: 1.5"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 90" title="Wk 17: 1.35"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 80" title="Wk 18: 1.2"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 70" title="Wk 19: 1.05"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 60" title="Wk 20: 0.9"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 60" title="Wk 21: 0.9"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 50" title="Wk 22: 0.75"></div>
+              <div class="bdc-bar shop" style="--bar-pct: 46" title="Wk 23: 0.7"></div>
+            </div>
+            <div class="bdc-tips">
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">📦</span>
+                <span>Batching multiple orders into a single delivery day prevents redundant logistics.</span>
+              </div>
+              <div class="bdc-tip">
+                <span class="bdc-tip-icon">♻️</span>
+                <span>Repaired clothing or pre-owned goods bypass resource-intense manufacturing chains.</span>
+              </div>
+            </div>
+            <div class="bdc-potential">
+              Potential Savings: up to 0.5 kg / week
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
