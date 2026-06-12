@@ -30,13 +30,14 @@ function resolveGoalDisplay(goal) {
    ==================================================== */
 
 function populateProfileData(profile) {
-  setText(S.profileName, profile.name || "You");
+  const nameEl = document.querySelector(".profile-name");
+  if (nameEl) nameEl.textContent = profile.name || "You";
 
   // Data rows
-  const rows = document.querySelectorAll(S.dataRows);
+  const rows = document.querySelectorAll(".data-row");
   if (rows.length >= 6) {
     const values = [
-      `${profile.city || "Mumbai"}, India",
+      `${profile.city || "Mumbai"}, India`,
       profile.household || "3–4 people",
       profile.commuteModes ? profile.commuteModes.join(", ") : "Public transit",
       profile.electricBill || "₹1,000 – ₹2,500",
@@ -44,61 +45,39 @@ function populateProfileData(profile) {
       `${profile.flights || 0} round trip${profile.flights === 1 ? "" : "s"} / year`,
     ];
     values.forEach((val, i) => {
-      const el = rows[i]?.querySelector(S.dataRowValue);
+      const el = rows[i]?.querySelector(".data-row-value");
       if (el) el.textContent = val;
     });
   }
 
   // Streak
   const streakVal = localStorage.getItem("terra_streak_count") || "11";
-  const streakEl = document.querySelector(S.profileStatVal);
+  const streakEl = document.querySelector(".profile-stat-val");
   if (streakEl) streakEl.textContent = streakVal;
 }
 
 function renderGoals(goals) {
-  const goalsList = document.querySelector(S.goalsList);
+  const goalsList = document.querySelector(".goals-list");
   if (!goalsList || !goals?.length) return;
 
   goalsList.innerHTML = "";
+  const fragment = document.createDocumentFragment();
   goals.forEach(goal => {
     const { icon, pct } = resolveGoalDisplay(goal);
-
+    const safeGoal = escapeHTML(goal);
     const row = document.createElement("div");
     row.className = "goal-row";
-
-    const iconEl = document.createElement("div");
-    iconEl.className = "goal-icon";
-    iconEl.textContent = icon;
-    row.appendChild(iconEl);
-
-    const info = document.createElement("div");
-    info.className = "goal-info";
-
-    const nameEl = document.createElement("div");
-    nameEl.className = "goal-name";
-    nameEl.textContent = goal;
-    info.appendChild(nameEl);
-
-    const wrap = document.createElement("div");
-    wrap.className = "goal-progress-wrap";
-
-    const track = document.createElement("div");
-    track.className = "goal-progress-track";
-    const fill = document.createElement("div");
-    fill.className = "goal-progress-fill";
-    fill.style.setProperty("--bar-pct", String(pct));
-    track.appendChild(fill);
-    wrap.appendChild(track);
-
-    const pctEl = document.createElement("span");
-    pctEl.className = "goal-pct";
-    pctEl.textContent = `${pct}%`;
-    wrap.appendChild(pctEl);
-
-    info.appendChild(wrap);
-    row.appendChild(info);
-    goalsList.appendChild(row);
+    row.innerHTML = `<div class="goal-icon">${icon}</div>
+      <div class="goal-info">
+        <div class="goal-name">${safeGoal}</div>
+        <div class="goal-progress-wrap">
+          <div class="goal-progress-track"><div class="goal-progress-fill" style="--bar-pct: ${pct}"></div></div>
+          <span class="goal-pct">${pct}%</span>
+        </div>
+      </div>`;
+    fragment.appendChild(row);
   });
+  goalsList.appendChild(fragment);
 }
 
 /* ====================================================

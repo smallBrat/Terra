@@ -340,6 +340,100 @@ const parsedValid2 = JSON.parse(validJSON2);
 assert(parsedValid2.test === 42, "Full flow: JSON parse works for valid data");
 assert(parsedValid2.nested.value === "hello", "Full flow: JSON parse preserves nested data");
 
+// ─── TEST: EMISSION_FACTORS.dailySavings constants ───
+console.log("\n[14] EMISSION_FACTORS.dailySavings constants");
+assert(EMISSION_FACTORS.dailySavings.bicyclePerKm === 0.18, "Bicycle factor is 0.18");
+assert(EMISSION_FACTORS.dailySavings.transitPerKm === 0.12, "Transit factor is 0.12");
+assert(EMISSION_FACTORS.dailySavings.carpoolPerKm === 0.08, "Carpool factor is 0.08");
+assert(EMISSION_FACTORS.dailySavings.meatFreeMeal === 0.8, "Meat-free meal factor is 0.8");
+assert(EMISSION_FACTORS.dailySavings.ac24 === 0.4, "AC 24°C factor is 0.4");
+assert(EMISSION_FACTORS.dailySavings.acOff === 0.8, "AC off factor is 0.8");
+assert(EMISSION_FACTORS.dailySavings.batching === 0.3, "Batching factor is 0.3");
+
+// ─── TEST: calculateDailySavings logic (pure computation) ───
+console.log("\n[15] calculateDailySavings — pure computation simulation");
+// Simulate the calculation logic from main.js
+function calcDailySavingsPure({ commuteDist = 0, commuteMode = "", mealCount = 0, acMode = "", batching = false }) {
+  const df = EMISSION_FACTORS.dailySavings;
+  let savings = 0;
+  if (commuteDist > 0) {
+    if (commuteMode.includes("Bicycle") || commuteMode.includes("Walk")) savings += commuteDist * df.bicyclePerKm;
+    else if (commuteMode.includes("Public transit")) savings += commuteDist * df.transitPerKm;
+    else if (commuteMode.includes("Carpool")) savings += commuteDist * df.carpoolPerKm;
+  }
+  savings += mealCount * df.meatFreeMeal;
+  if (acMode.includes("AC at 24°C")) savings += df.ac24;
+  else if (acMode.includes("AC turned off")) savings += df.acOff;
+  if (batching) savings += df.batching;
+  return parseFloat(savings.toFixed(1));
+}
+// Bicycle 10km + 2 meals + AC 24 + batching
+const savings1 = calcDailySavingsPure({ commuteDist: 10, commuteMode: "Bicycle", mealCount: 2, acMode: "AC at 24°C", batching: true });
+assertClose(savings1, 10 * 0.18 + 2 * 0.8 + 0.4 + 0.3, 0.01, "Full savings scenario");
+// Zero everything
+const savings2 = calcDailySavingsPure({});
+assert(savings2 === 0, "Zero inputs produce zero savings");
+// Transit 20km only
+const savings3 = calcDailySavingsPure({ commuteDist: 20, commuteMode: "Public transit" });
+assertClose(savings3, 20 * 0.12, 0.01, "Transit-only savings");
+// AC off only
+const savings4 = calcDailySavingsPure({ acMode: "AC turned off" });
+assert(savings4 === 0.8, "AC off savings");
+
+// ─── TEST: safeJSONParse error handling ───
+console.log("\n[16] safeJSONParse — error handling");
+// Test that the function exists and is callable
+assert(typeof safeJSONParse === "function", "safeJSONParse is a function");
+// Mock localStorage to test error handling (getItem throws)
+global.localStorage = {
+  getItem: () => { throw new Error("Simulated corruption"); },
+  removeItem: () => {},
+};
+const corruptedResult = safeJSONParse("any_key", DEFAULT_PROFILE);
+assert(corruptedResult === DEFAULT_PROFILE, "Returns fallback on corrupted localStorage");
+// Mock localStorage returning null (missing key)
+global.localStorage = { getItem: () => null, removeItem: () => {} };
+const missingResult = safeJSONParse("missing_key", DEFAULT_PROFILE);
+assert(missingResult === DEFAULT_PROFILE, "Returns fallback for missing key");
+// Cleanup
+delete global.localStorage;
+
+// ─── TEST: switchPeriod pure computation ───
+console.log("\n[17] switchPeriod — pure computation");
+// Simulate the footprint value computation from switchPeriod
+function calcPeriodValues(totalWeekly, factor) {
+  const baseValues = [17.8, 9.6, 6.1, 0.7]; // DEFAULT_PROFILE footprint values
+  const monthly = (totalWeekly * factor).toFixed(1);
+  const monthlyValues = baseValues.map(v => (v * factor).toFixed(1));
+  return { monthly, monthlyValues };
+}
+const MONTHLY_FACTOR = 4.33;
+const weekResult = calcPeriodValues(34.2, 1);
+assert(weekResult.monthly === "34.2", "Weekly total is unchanged");
+const monthResult = calcPeriodValues(34.2, MONTHLY_FACTOR);
+assertClose(parseFloat(monthResult.monthly), 34.2 * 4.33, 0.1, "Monthly total is weekly * 4.33");
+assert(monthResult.monthlyValues.length === 4, "Monthly values has 4 categories");
+// Verify fallback when no user data
+const fallbackResult = calcPeriodValues(DEFAULT_PROFILE.footprint.total, MONTHLY_FACTOR);
+assert(parseFloat(fallbackResult.monthly) > 0, "Fallback produces valid monthly total");
+
+// ─── TEST: calculateFootprint boundary conditions ───
+console.log("\n[18] calculateFootprint — boundary conditions");
+// Zero everything
+const zeroFp = calculateFootprint({
+  commuteKm: 0, commuteModes: ["Cycling / walking"],
+  electricBill: "Under ₹500", cooking: "Solar", ac: "No AC",
+  diet: "Mostly vegetarian", deliveries: 0, shoppingFreq: "Rarely",
+  sustainableChips: ["I bring reusable bags", "I batch my deliveries", "I repair before replacing"],
+  flights: 0, flightType: "Domestic"
+});
+assert(zeroFp.total > 0, "Zero input still produces non-zero total (base values)");
+assert(zeroFp.comparisonPct >= 0, "Comparison percentage is non-negative");
+// Maximum flights
+const maxFp = calculateFootprint({ flights: 52, flightType: "Long-haul" });
+assert(maxFp.commute > 100, "52 long-haul flights produces very high commute");
+assert(maxFp.total > 200, "52 long-haul flights produces very high total");
+
 // ─── SUMMARY ───
 console.log("\n" + "=".repeat(50));
 console.log(`RESULTS: ${passed} passed, ${failed} failed`);

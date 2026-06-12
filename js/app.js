@@ -9,6 +9,17 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccessibilityEnhancements();
 });
 
+/* ====================================================   CSP VIOLATION MONITORING
+   Logs policy violations for security observability.
+   ==================================================== */
+if (typeof document.addEventListener === "function") {
+  document.addEventListener("securitypolicyviolation", (e) => {
+    console.warn(
+      `CSP violation: ${e.violatedDirective} blocked ${e.blockedURI} on ${e.sourceFile}:${e.lineNumber}`
+    );
+  });
+}
+
 /* ====================================================
    ACCESSIBILITY ENHANCEMENTS
    Adds tabindex, role="button", and aria attributes to
@@ -74,64 +85,101 @@ function initAccessibilityEnhancements() {
   }
 }
 
-/* ====================================================   GLOBAL EVENT DELEGATION
-   Single delegated click handler routes to handlers via a selector-based map.
+/* ====================================================
+   GLOBAL EVENT DELEGATION
+   Route table maps CSS selectors to handler functions.
+   Replaces all inline onclick= handlers with JS-bound events.
    ==================================================== */
-
-/**
- * Dispatch table: CSS selector → handler function.
- * Handler receives (element, event). Order matters — first match wins.
- */
-const CLICK_HANDLERS = [
-  // Onboarding navigation
-  { sel: ".ob-back-btn",          fn: (el, e) => { e.preventDefault(); if (typeof prevStep === "function") prevStep(); } },
-  { sel: ".ob-skip",              fn: (el, e) => { e.preventDefault(); window.location.href = "dashboard.html"; } },
-  { sel: ".ob-step-panel .btn-primary:not(#step-7 .btn-primary)", fn: (el, e) => { e.preventDefault(); if (typeof nextStep === "function") nextStep(); } },
-
-  // Onboarding option selection
-  { sel: "#step-2 .ob-option-card", fn: (el) => { if (typeof toggleOption === "function") toggleOption(el); } },
-  { sel: "#step-3 .ob-option-card, #step-6 .ob-option-card", fn: (el) => { handleSingleSelect(el); } },
-  { sel: "#step-4 .ob-option-row, #step-5 .ob-option-row", fn: (el) => { handleSingleSelect(el); } },
-  { sel: ".ob-goal-card",         fn: (el) => { if (typeof toggleGoal === "function") toggleGoal(el); } },
-  { sel: "#step-5 .chip",         fn: (el) => { if (typeof toggleChip === "function") toggleChip(el); } },
-
-  // Dashboard
-  { sel: ".toggle-option",        fn: (el) => { handlePeriodToggle(el); } },
-  { sel: ".rec-item",             fn: () => { window.location.href = "actions.html"; } },
-
-  // Insights
-  { sel: ".insight-card-action",  fn: (el, e) => { const href = el.getAttribute("data-href"); if (href) { e.preventDefault(); window.location.href = href; } } },
-];
-
-/** Helper: select a card/row and store its value on the parent group. */
-function handleSingleSelect(el) {
-  if (typeof selectSingle !== "function") return;
-  const group = el.closest(".ob-options-grid") || el.closest(".ob-options-list");
-  selectSingle(el);
-  if (group) {
-    group.setAttribute("data-selected-value", el.querySelector("strong")?.textContent?.trim() || el.textContent.trim().split("\n")[0]);
-  }
-}
-
-/** Helper: period toggle — deactivate siblings, activate clicked, notify. */
-function handlePeriodToggle(el) {
-  const group = el.closest(".toggle-group");
-  if (!group) return;
-  group.querySelectorAll(".toggle-option").forEach(s => {
-    s.classList.remove("active");
-    s.setAttribute("aria-selected", "false");
-  });
-  el.classList.add("active");
-  el.setAttribute("aria-selected", "true");
-  if (typeof window.switchPeriod === "function") window.switchPeriod(el);
-}
-
 function initGlobalEvents() {
-  // Single delegated click handler — routes via dispatch table
+  // Route table: each entry matches a selector and delegates to a handler
+  const clickRoutes = [
+    {
+      selector: ".ob-back-btn",
+      handler: (e, el) => { e.preventDefault(); if (typeof prevStep === "function") prevStep(); },
+    },
+    {
+      selector: ".btn-primary",
+      handler: (e, el) => {
+        const panel = el.closest(".ob-step-panel");
+        if (panel && !el.closest("#step-7") && typeof nextStep === "function") {
+          e.preventDefault(); nextStep();
+        }
+      },
+    },
+    {
+      selector: ".ob-skip",
+      handler: (e) => { e.preventDefault(); window.location.href = "dashboard.html"; },
+    },
+    {
+      selector: "#step-2 .ob-option-card",
+      handler: (e, el) => { if (typeof toggleOption === "function") toggleOption(el); },
+    },
+    {
+      selector: "#step-3 .ob-option-card, #step-6 .ob-option-card",
+      handler: (e, el) => {
+        if (typeof selectSingle !== "function") return;
+        const group = el.closest(".ob-options-grid");
+        const groupName = el.closest("#step-3") ? "cooking" : "flighttype";
+        selectSingle(el, groupName);
+        if (group) {
+          group.setAttribute("data-selected-value", el.querySelector("strong")?.textContent?.trim() || el.textContent.trim().split("\n")[0]);
+        }
+      },
+    },
+    {
+      selector: "#step-4 .ob-option-row, #step-5 .ob-option-row",
+      handler: (e, el) => {
+        if (typeof selectSingle !== "function") return;
+        const group = el.closest(".ob-options-list") || el.closest(".ob-options-grid");
+        selectSingle(el, "diet");
+        if (group) {
+          group.setAttribute("data-selected-value", el.querySelector("strong")?.textContent?.trim() || el.textContent.trim().split("\n")[0]);
+        }
+      },
+    },
+    {
+      selector: ".ob-goal-card",
+      handler: (e, el) => { if (typeof toggleGoal === "function") toggleGoal(el); },
+    },
+    {
+      selector: "#step-5 .chip",
+      handler: (e, el) => { if (typeof toggleChip === "function") toggleChip(el); },
+    },
+    {
+      selector: ".toggle-option",
+      handler: (e, el) => {
+        const group = el.closest(".toggle-group");
+        if (!group) return;
+        group.querySelectorAll(".toggle-option").forEach(s => {
+          s.classList.remove("active");
+          s.setAttribute("aria-selected", "false");
+        });
+        el.classList.add("active");
+        el.setAttribute("aria-selected", "true");
+        if (typeof window.switchPeriod === "function") window.switchPeriod(el);
+        if (typeof announceUpdate === "function") {
+          announceUpdate(`Period changed to ${el.textContent.trim()}`);
+        }
+      },
+    },
+    {
+      selector: ".rec-item",
+      handler: () => { window.location.href = "actions.html"; },
+    },
+    {
+      selector: ".insight-card-action",
+      handler: (e, el) => {
+        const href = el.getAttribute("data-href");
+        if (href) { e.preventDefault(); window.location.href = href; }
+      },
+    },
+  ];
+
+  // Single delegated click listener dispatches to route handlers
   document.addEventListener("click", (e) => {
-    for (const { sel, fn } of CLICK_HANDLERS) {
-      const el = e.target.closest(sel);
-      if (el) { fn(el, e); return; }
+    for (const route of clickRoutes) {
+      const el = e.target.closest(route.selector);
+      if (el) { route.handler(e, el); break; }
     }
   });
 

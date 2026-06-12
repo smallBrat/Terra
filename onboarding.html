@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
   <title>Get started — Terra</title>
   <meta name="description" content="Tell us a bit about your lifestyle and we'll calculate your personal carbon footprint in minutes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +16,7 @@
   <link rel="stylesheet" href="css/onboarding.css">
 </head>
 <body class="page-onboarding">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- HEADER -->
   <header class="onboarding-header">
@@ -74,12 +78,12 @@
     </aside>
 
     <!-- CONTENT -->
-    <main class="ob-content">
+    <main class="ob-content" id="main-content">
 
       <!-- STEP 1: Home & Location -->
       <div class="ob-step-panel active" id="step-1">
         <div class="ob-panel-label">Home & Location</div>
-        <h1 class="ob-panel-title">Where do you live?</h1>
+        <h2 class="ob-panel-title">Where do you live?</h2>
         <p class="ob-panel-sub">Your local energy grid and climate affect your footprint more than you might expect.</p>
 
         <div class="ob-form-grid">
@@ -118,7 +122,7 @@
       <!-- STEP 2: Commute -->
       <div class="ob-step-panel" id="step-2">
         <div class="ob-panel-label">Commute & Transport</div>
-        <h1 class="ob-panel-title">How do you typically get around?</h1>
+        <h2 class="ob-panel-title">How do you typically get around?</h2>
         <p class="ob-panel-sub">Select everything that applies to your regular week.</p>
 
         <div class="ob-options-grid">
@@ -189,7 +193,7 @@
       <!-- STEP 3: Home Energy -->
       <div class="ob-step-panel" id="step-3">
         <div class="ob-panel-label">Home Energy</div>
-        <h1 class="ob-panel-title">How do you power your home?</h1>
+        <h2 class="ob-panel-title">How do you power your home?</h2>
         <p class="ob-panel-sub">Cooling and heating are often the biggest household energy drivers in India.</p>
 
         <div class="ob-options-list mb-6">
@@ -256,7 +260,7 @@
       <!-- STEP 4: Food -->
       <div class="ob-step-panel" id="step-4">
         <div class="ob-panel-label">Food & Diet</div>
-        <h1 class="ob-panel-title">What does your diet look like?</h1>
+        <h2 class="ob-panel-title">What does your diet look like?</h2>
         <p class="ob-panel-sub">No judgement here. Food choices account for about 20–25% of a typical person's footprint.</p>
 
         <div class="form-group mb-6">
@@ -303,7 +307,7 @@
       <!-- STEP 5: Shopping -->
       <div class="ob-step-panel" id="step-5">
         <div class="ob-panel-label">Shopping & Deliveries</div>
-        <h1 class="ob-panel-title">How much do you shop and order?</h1>
+        <h2 class="ob-panel-title">How much do you shop and order?</h2>
         <p class="ob-panel-sub">Packaging, delivery logistics, and new goods all carry a footprint. Buying less and buying smart helps.</p>
 
         <div class="form-group mb-6">
@@ -354,7 +358,7 @@
       <!-- STEP 6: Travel -->
       <div class="ob-step-panel" id="step-6">
         <div class="ob-panel-label">Long-distance Travel</div>
-        <h1 class="ob-panel-title">How often do you travel long distances?</h1>
+        <h2 class="ob-panel-title">How often do you travel long distances?</h2>
         <p class="ob-panel-sub">Flights are one of the highest single-activity emission sources. Even one flight can outweigh months of other changes.</p>
 
         <div class="form-group mb-6">
@@ -404,11 +408,11 @@
       <!-- STEP 7: Goals -->
       <div class="ob-step-panel" id="step-7">
         <div class="ob-panel-label">Your Goals</div>
-        <h1 class="ob-panel-title">What matters most to you?</h1>
+        <h2 class="ob-panel-title">What matters most to you?</h2>
         <p class="ob-panel-sub">We'll prioritise your suggestions based on what you actually care about. You can change this anytime.</p>
 
         <div class="ob-goals-grid mb-6">
-          <div class="ob-goal-card">
+          <div class="ob-goal-card" role="button" tabindex="0" aria-label="Reduce my commute footprint: Better transport choices, fewer solo rides">
             <div class="ob-goal-icon-wrap">🚗</div>
             <div class="ob-goal-text">
               <strong>Reduce my commute footprint</strong>
@@ -416,7 +420,7 @@
             </div>
             <div class="ob-goal-select"></div>
           </div>
-          <div class="ob-goal-card">
+          <div class="ob-goal-card" role="button" tabindex="0" aria-label="Cut my home energy usage: Smarter cooling, efficient appliances">
             <div class="ob-goal-icon-wrap">🏠</div>
             <div class="ob-goal-text">
               <strong>Cut my home energy usage</strong>
@@ -424,7 +428,7 @@
             </div>
             <div class="ob-goal-select"></div>
           </div>
-          <div class="ob-goal-card">
+          <div class="ob-goal-card" role="button" tabindex="0" aria-label="Shift my diet gradually: Small, sustainable food habit changes">
             <div class="ob-goal-icon-wrap">🍽️</div>
             <div class="ob-goal-text">
               <strong>Shift my diet gradually</strong>
@@ -432,7 +436,7 @@
             </div>
             <div class="ob-goal-select"></div>
           </div>
-          <div class="ob-goal-card">
+          <div class="ob-goal-card" role="button" tabindex="0" aria-label="Understand my travel impact: See how flights compare to daily habits">
             <div class="ob-goal-icon-wrap">✈️</div>
             <div class="ob-goal-text">
               <strong>Understand my travel impact</strong>
@@ -440,7 +444,7 @@
             </div>
             <div class="ob-goal-select"></div>
           </div>
-          <div class="ob-goal-card">
+          <div class="ob-goal-card" role="button" tabindex="0" aria-label="Just track and understand: Build awareness before making changes">
             <div class="ob-goal-icon-wrap">📊</div>
             <div class="ob-goal-text">
               <strong>Just track and understand</strong>

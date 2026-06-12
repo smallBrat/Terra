@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
   <title>Insights & Feedback — Terra</title>
   <meta name="description" content="View personalized climate feedback on Terra. Find trends, positive shifts, and major opportunities to save carbon footprint.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +72,7 @@
       <div class="sidebar-footprint">
         <div class="sidebar-footprint-card">
           <div class="sidebar-footprint-label">This week</div>
-          <div class="sidebar-footprint-value">34.2</div>
+          <div class="sidebar-footprint-value" data-sidebar-footprint>34.2</div>
           <div class="sidebar-footprint-unit">kg CO₂e</div>
           <div class="sidebar-footprint-delta">
             ↓ 8% vs last week
@@ -252,7 +255,6 @@
 
   <script src="js/constants.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/ui.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

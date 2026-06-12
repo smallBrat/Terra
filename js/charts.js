@@ -1,8 +1,26 @@
 // TERRA - CHARTS JS
 // Custom high-DPI vanilla HTML5 Canvas charts
 
+// Lazy-initialize charts when canvas enters viewport
 document.addEventListener("DOMContentLoaded", () => {
-  renderCharts();
+  const donutCanvas = document.getElementById("donutChart");
+  if (!donutCanvas) return; // Not on dashboard page
+
+  // Use intersection observer if available, otherwise render immediately
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          renderCharts();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "100px" } // Start loading slightly before visible
+    );
+    observer.observe(donutCanvas);
+  } else {
+    renderCharts(); // Fallback for older browsers
+  }
 });
 
 // Expose renderCharts globally so it can be re-run when period changes or logs are submitted

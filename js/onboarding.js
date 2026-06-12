@@ -94,11 +94,16 @@ function updateUI() {
 
 // Option Selection Helpers
 
-/** Deselect all siblings, select the clicked element, store value in data attribute. */
-function selectSingle(element) {
+// Single Select Cards
+function selectSingle(element, groupName) {
+  // Find all sibling cards in the same form-group/group level
   const siblings = element.parentNode.querySelectorAll(".ob-option-card, .ob-option-row");
   siblings.forEach(sib => sib.classList.remove("selected"));
+  
+  // Select the clicked element
   element.classList.add("selected");
+  
+  // Store the select value in a data attribute
   element.parentNode.setAttribute("data-selected-value", element.innerText.trim().split("\n")[0]);
 }
 
@@ -117,87 +122,78 @@ function toggleGoal(element) {
   element.classList.toggle("selected");
 }
 
-// Calculations and LocalStorage Save
+/* ====================================================
+   ONBOARDING DATA GATHERING & SAVE
+   ==================================================== */
 
-/**
- * Read all onboarding form values from the DOM.
- * Returns a raw data object with validated fields.
- */
-function gatherOnboardingData() {
+/** Read selected text from the first matching element in a group. */
+function readSelectedText(selector, fallback) {
+  const el = document.querySelector(selector);
+  return el ? (el.querySelector("strong")?.innerText || el.innerText || fallback) : fallback;
+}
+
+/** Read all selected card texts within a step. */
+function readSelectedCards(stepSelector) {
+  return Array.from(document.querySelectorAll(`${stepSelector} .ob-option-card.selected`))
+    .map(card => card.innerText.trim().split("\n")[0]);
+}
+
+/** Gather all onboarding form data into a structured object. */
+function gatherOnboardingInputs() {
   const cityRaw = document.getElementById("city")?.value || "";
   const city = validateCity(cityRaw).value;
 
   const commuteKmRaw = document.getElementById("commuteKm")?.value || "15";
   const commuteKm = validateRange(commuteKmRaw, VALIDATION.commuteKm.min, VALIDATION.commuteKm.max).value;
-
-  const commuteModes = Array.from(
-    document.querySelectorAll("#step-2 .ob-option-card.selected")
-  ).map(card => card.innerText.trim().split("\n")[0]);
+  const commuteModes = readSelectedCards("#step-2");
 
   const cooking = document.querySelector("#step-3 [data-selected-value]")?.getAttribute("data-selected-value") || "LPG / piped gas";
   const acSelected = document.querySelectorAll("#step-3 .ob-option-card.selected");
   const ac = acSelected.length > 0 ? acSelected[0].innerText.trim().split("\n")[0] : "Seasonally";
 
-  const diet = document.querySelector("#step-4 .ob-option-row.selected")?.querySelector("strong")?.innerText || "Flexitarian";
+  const electricBill = document.getElementById("electricBill")?.value || "₹1,000 – ₹2,500";
+  const diet = readSelectedText("#step-4 .ob-option-row.selected", "Flexitarian");
 
   const deliveriesRaw = document.getElementById("deliveriesVal")?.textContent || "3";
   const deliveries = validateRange(deliveriesRaw, VALIDATION.deliveries.min, VALIDATION.deliveries.max).value;
-
   const shoppingFreq = document.querySelector("#step-5 .ob-option-row.selected")?.innerText || "Occasionally";
   const sustainableChips = Array.from(document.querySelectorAll("#step-5 .chip.active")).map(c => c.innerText.trim());
 
   const flightsRaw = document.getElementById("flightsVal")?.textContent || "2";
   const flights = validateRange(flightsRaw, VALIDATION.flights.min, VALIDATION.flights.max).value;
+  const flightType = readSelectedText("#step-6 .ob-option-card.selected", "Domestic");
 
-  const flightType = document.querySelector("#step-6 .ob-option-card.selected")?.querySelector("strong")?.innerText || "Domestic";
-  const goals = Array.from(document.querySelectorAll("#step-7 .ob-goal-card.selected")).map(c => c.querySelector("strong")?.innerText || "");
+  const goals = Array.from(document.querySelectorAll("#step-7 .ob-goal-card.selected"))
+    .map(card => card.querySelector("strong")?.innerText || "");
   const targetReduction = document.getElementById("targetReduction")?.value || "Reduce by 10–20% this year";
 
   return {
     city, homeType: document.getElementById("homeType")?.value || "Apartment (medium)",
     household: document.getElementById("household")?.value || "3–4 people",
-    commuteKm, commuteModes, cooking, ac,
-    electricBill: document.getElementById("electricBill")?.value || "₹1,000 – ₹2,500",
-    diet, deliveries, shoppingFreq, sustainableChips,
-    flights, flightType, goals, targetReduction,
+    commuteKm, commuteModes, cooking, ac, electricBill, diet,
+    deliveries, shoppingFreq, sustainableChips, flights, flightType,
+    goals, targetReduction,
   };
 }
 
-/**
- * Build a complete user profile from onboarding form data.
- * @param {Object} data — Output of gatherOnboardingData()
- * @returns {Object} Full user profile ready for localStorage
- */
-function buildUserProfile(data) {
-  const footprint = calculateFootprint({
-    commuteKm: data.commuteKm, commuteModes: data.commuteModes,
-    electricBill: data.electricBill, cooking: data.cooking, ac: data.ac,
-    diet: data.diet, deliveries: data.deliveries, shoppingFreq: data.shoppingFreq,
-    sustainableChips: data.sustainableChips, flights: data.flights, flightType: data.flightType,
-  });
+function saveOnboardingData() {
+  const inputs = gatherOnboardingInputs();
+  const footprint = calculateFootprint(inputs);
 
-  return {
+  const userProfile = {
     name: DEFAULT_PROFILE.name,
-    city: data.city, homeType: data.homeType, household: data.household,
-    commuteKm: data.commuteKm, commuteModes: data.commuteModes,
-    cooking: data.cooking, ac: data.ac, electricBill: data.electricBill,
-    diet: data.diet, deliveries: data.deliveries, shoppingFreq: data.shoppingFreq,
-    sustainableChips: data.sustainableChips, flights: data.flights,
-    flightType: data.flightType, goals: data.goals, targetReduction: data.targetReduction,
+    city: inputs.city, homeType: inputs.homeType, household: inputs.household,
+    commuteKm: inputs.commuteKm, commuteModes: inputs.commuteModes,
+    cooking: inputs.cooking, ac: inputs.ac, electricBill: inputs.electricBill,
+    diet: inputs.diet, deliveries: inputs.deliveries, shoppingFreq: inputs.shoppingFreq,
+    sustainableChips: inputs.sustainableChips, flights: inputs.flights, flightType: inputs.flightType,
+    goals: inputs.goals, targetReduction: inputs.targetReduction,
     footprint: {
       commute: footprint.commute, energy: footprint.energy,
-      food: footprint.food, shopping: footprint.shopping,
-      total: footprint.total, comparisonPct: footprint.comparisonPct,
-      comparisonLabel: footprint.comparisonLabel,
+      food: footprint.food, shopping: footprint.shopping, total: footprint.total,
+      comparisonPct: footprint.comparisonPct, comparisonLabel: footprint.comparisonLabel,
     },
   };
-}
 
-/**
- * Orchestrate: gather form → build profile → persist.
- */
-function saveOnboardingData() {
-  const formData = gatherOnboardingData();
-  const userProfile = buildUserProfile(formData);
   localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(userProfile));
 }

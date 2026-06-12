@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; frame-ancestors 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
   <title>Terra — Know Your Footprint. Change Your Habits.</title>
   <meta name="description" content="Terra helps you understand where your carbon emissions come from, track daily habits, and take small actions that add up to real change.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +16,7 @@
   <link rel="stylesheet" href="css/landing.css">
 </head>
 <body class="page-landing">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <!-- NAV -->
   <header class="site-nav">
@@ -35,7 +39,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
 
     <!-- HERO -->
     <section class="hero">
